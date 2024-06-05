@@ -13,7 +13,8 @@
 y_sort_enabled = true
 script = ExtResource("1_8il21")
 
-[node name="TestKenny1Bit" parent="." instance=ExtResource("8_dbxih")]
+[node name="Map" parent="." instance=ExtResource("8_dbxih")]
+unique_name_in_owner = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
