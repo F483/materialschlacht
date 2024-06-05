@@ -1,0 +1,147 @@
+[gd_scene load_steps=18 format=3 uid="uid://c6w63m5cnqer3"]
+
+[ext_resource type="Script" path="res://entities/enemies/boar/boar.gd" id="1_jupw4"]
+[ext_resource type="Resource" uid="uid://njtb40pi75ka" path="res://entities/enemies/boar/faction.tres" id="2_p87sg"]
+[ext_resource type="Script" path="res://components/health_bar.gd" id="3_l2ywf"]
+[ext_resource type="Texture2D" uid="uid://badpo8ufeu201" path="res://asset_packs/PUNY_MONSTERS_v1/Boar2.png" id="4_1fu71"]
+[ext_resource type="Script" path="res://components/hit_box.gd" id="5_1u3ew"]
+[ext_resource type="Script" path="res://components/hurt_box.gd" id="6_5pi78"]
+[ext_resource type="Script" path="res://components/spawner.gd" id="7_3rocx"]
+[ext_resource type="Script" path="res://components/movement.gd" id="8_d6wt0"]
+[ext_resource type="Script" path="res://components/direction_selector.gd" id="9_oew25"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fjug"]
+bg_color = Color(0.152941, 0.168627, 0.188235, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jivgi"]
+bg_color = Color(1, 0.254902, 0.490196, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_avdf0"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1cqyx"]
+radius = 6.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e7q00"]
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_w7d2j"]
+resource_name = "Idle"
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_a42va"]
+resource_name = "Walk"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xgfcx"]
+_data = {
+"Idle": SubResource("Animation_w7d2j"),
+"Walk": SubResource("Animation_a42va")
+}
+
+[node name="Boar" type="CharacterBody2D"]
+collision_layer = 129
+collision_mask = 17
+motion_mode = 1
+script = ExtResource("1_jupw4")
+faction = ExtResource("2_p87sg")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -6.0
+offset_top = -11.0
+offset_right = 6.0
+offset_bottom = -9.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5fjug")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jivgi")
+max_value = 30.0
+value = 30.0
+show_percentage = false
+script = ExtResource("3_l2ywf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(0, -4)
+texture = ExtResource("4_1fu71")
+hframes = 3
+vframes = 4
+frame = 2
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 0
+script = ExtResource("5_1u3ew")
+dammage = 666.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_avdf0")
+
+[node name="HurtBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 512
+collision_mask = 32
+script = ExtResource("6_5pi78")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_1cqyx")
+debug_color = Color(0.905882, 0.215686, 0.537255, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_e7q00")
+
+[node name="DeathFX" type="Marker2D" parent="."]
+script = ExtResource("7_3rocx")
+extra_scale = 0.25
+
+[node name="Movement" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("8_d6wt0")
+movement_speed = 32.0
+
+[node name="DirectionSelector" type="Node2D" parent="."]
+script = ExtResource("9_oew25")
+frames = 4
+lookup = Array[int]([2, 0, 1, 3])
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_xgfcx")
+}
+autoplay = "Walk"

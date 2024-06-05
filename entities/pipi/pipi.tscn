@@ -1,0 +1,102 @@
+[gd_scene load_steps=14 format=3 uid="uid://fjom0esbu85s"]
+
+[ext_resource type="Script" path="res://entities/pipi/pipi.gd" id="1_88kcb"]
+[ext_resource type="Script" path="res://components/movement.gd" id="2_533kw"]
+[ext_resource type="Script" path="res://components/direction_flipper.gd" id="2_jc4eb"]
+[ext_resource type="Texture2D" uid="uid://dd8rquxdaafux" path="res://entities/pipi/pipi.png" id="2_tfm1f"]
+[ext_resource type="Script" path="res://components/hurt_box.gd" id="3_k2kfr"]
+[ext_resource type="Script" path="res://components/hit_box.gd" id="4_ow4fq"]
+[ext_resource type="Script" path="res://components/flag.gd" id="5_o2bmx"]
+[ext_resource type="Resource" uid="uid://dd0i7ps2dkj6l" path="res://factions/neutral.tres" id="6_bihtx"]
+[ext_resource type="Script" path="res://components/feedback_damage.gd" id="7_ylri7"]
+[ext_resource type="Script" path="res://components/selection.gd" id="10_nhfpv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_om3gc"]
+radius = 6.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2r8i4"]
+radius = 8.0
+height = 24.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e7q00"]
+radius = 6.0
+
+[node name="Pipi" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(2.08165e-12, -10)
+collision_layer = 129
+collision_mask = 17
+script = ExtResource("1_88kcb")
+
+[node name="Selection" type="Node2D" parent="."]
+visible = false
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("10_nhfpv")
+rect = Rect2(-12, -16, 24, 32)
+outline_color = Color(1, 0, 0, 1)
+draw_box = false
+
+[node name="DirectionFlipper" type="Node2D" parent="."]
+script = ExtResource("2_jc4eb")
+
+[node name="Sprite2D" type="Sprite2D" parent="DirectionFlipper"]
+z_index = 1
+y_sort_enabled = true
+texture_filter = 1
+texture = ExtResource("2_tfm1f")
+
+[node name="HurtBox" type="Area2D" parent="DirectionFlipper"]
+collision_layer = 512
+collision_mask = 32
+script = ExtResource("3_k2kfr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DirectionFlipper/HurtBox"]
+z_index = 1
+shape = SubResource("CapsuleShape2D_om3gc")
+debug_color = Color(0.905882, 0.215686, 0.537255, 0.419608)
+
+[node name="HitBox" type="Area2D" parent="DirectionFlipper"]
+z_index = 1
+collision_layer = 256
+collision_mask = 0
+script = ExtResource("4_ow4fq")
+dammage = 666.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DirectionFlipper/HitBox"]
+shape = SubResource("CapsuleShape2D_2r8i4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(2.08165e-12, 10)
+shape = SubResource("CircleShape2D_e7q00")
+
+[node name="Movement" type="Node2D" parent="."]
+script = ExtResource("2_533kw")
+movement_speed = 64.0
+
+[node name="Flag" type="Polygon2D" parent="."]
+visible = false
+z_index = 1
+y_sort_enabled = true
+position = Vector2(-46, -129)
+color = Color(0, 0.596078, 0, 1)
+polygon = PackedVector2Array(1, -43, 93, -23, 1, 0)
+script = ExtResource("5_o2bmx")
+faction = ExtResource("6_bihtx")
+
+[node name="Feedback" type="Node2D" parent="."]
+script = ExtResource("7_ylri7")
+
+[connection signal="damaged" from="DirectionFlipper/HurtBox" to="Feedback" method="on_damaged"]
+[connection signal="area_entered" from="DirectionFlipper/HitBox" to="DirectionFlipper/HitBox" method="_on_area_entered"]
+[connection signal="updated_char_layer" from="Flag" to="." method="set_collision_layer"]
+[connection signal="updated_char_mask" from="Flag" to="." method="set_collision_mask"]
+[connection signal="updated_color" from="Flag" to="Flag" method="set_color"]
+[connection signal="updated_hitbox_layer" from="Flag" to="DirectionFlipper/HitBox" method="set_collision_layer"]
+[connection signal="updated_hitbox_mask" from="Flag" to="DirectionFlipper/HitBox" method="set_collision_mask"]
+[connection signal="updated_hurtbox_layer" from="Flag" to="DirectionFlipper/HurtBox" method="set_collision_layer"]
+[connection signal="updated_hurtbox_mask" from="Flag" to="DirectionFlipper/HurtBox" method="set_collision_mask"]

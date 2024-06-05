@@ -1,0 +1,127 @@
+[gd_scene load_steps=22 format=3 uid="uid://2bsw82sg7gwu"]
+
+[ext_resource type="Script" path="res://entities/bear/bear.gd" id="1_exumd"]
+[ext_resource type="Script" path="res://components/direction_flipper.gd" id="2_e3fx7"]
+[ext_resource type="Resource" uid="uid://dwvn561nyj7es" path="res://entities/bear/faction_player.tres" id="2_w2yjw"]
+[ext_resource type="PackedScene" uid="uid://xlc8vxjs6uup" path="res://weapons/shotgun/shotgun.tscn" id="3_it0qi"]
+[ext_resource type="Script" path="res://components/movement.gd" id="3_jge5b"]
+[ext_resource type="Texture2D" uid="uid://cv0cby5hmahpo" path="res://entities/bear/move.png" id="4_6c2au"]
+[ext_resource type="Script" path="res://components/hurt_box.gd" id="4_87uy4"]
+[ext_resource type="Script" path="res://components/health_bar.gd" id="5_ola4u"]
+[ext_resource type="Script" path="res://components/spawner.gd" id="10_b3vyy"]
+[ext_resource type="Script" path="res://components/selection.gd" id="10_egjt5"]
+[ext_resource type="Script" path="res://components/state/state_machine.gd" id="12_qfbvj"]
+[ext_resource type="Script" path="res://components/state/states/move.gd" id="13_76fq7"]
+[ext_resource type="Script" path="res://components/state/states/hold.gd" id="14_km1mb"]
+[ext_resource type="Script" path="res://components/state/states/cast.gd" id="15_8eu5o"]
+[ext_resource type="Script" path="res://components/state/states/defend.gd" id="15_fbd2v"]
+[ext_resource type="Script" path="res://components/state/states/bash.gd" id="16_5l8x7"]
+[ext_resource type="Script" path="res://components/state/states/attack.gd" id="16_xfg34"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kfv2e"]
+radius = 16.0
+height = 64.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cy2a2"]
+bg_color = Color(0.152941, 0.168627, 0.188235, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_poeq1"]
+bg_color = Color(1, 0.254902, 0.490196, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dengc"]
+radius = 14.0
+
+[node name="Bear" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 17
+collision_mask = 131
+input_pickable = true
+script = ExtResource("1_exumd")
+faction = ExtResource("2_w2yjw")
+
+[node name="Selection" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, -40)
+script = ExtResource("10_egjt5")
+fill_color = Color(0.321569, 0.321569, 0, 0.752941)
+outline_color = Color(1, 1, 0, 1)
+draw_box = false
+
+[node name="DirectionFlipper" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, -40)
+script = ExtResource("2_e3fx7")
+
+[node name="Sprite2D" type="Sprite2D" parent="DirectionFlipper"]
+unique_name_in_owner = true
+texture_filter = 1
+texture = ExtResource("4_6c2au")
+
+[node name="HurtBox" type="Area2D" parent="DirectionFlipper"]
+unique_name_in_owner = true
+collision_layer = 64
+collision_mask = 256
+script = ExtResource("4_87uy4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DirectionFlipper/HurtBox"]
+shape = SubResource("CapsuleShape2D_kfv2e")
+debug_color = Color(0.905882, 0.215686, 0.537255, 0.419608)
+
+[node name="Weapon" parent="DirectionFlipper" instance=ExtResource("3_it0qi")]
+unique_name_in_owner = true
+shot_spread = 0.333
+
+[node name="Movement" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_jge5b")
+movement_speed = 64.0
+movement_tolerance = 1.0
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -32.0
+offset_top = -98.0
+offset_right = 32.0
+offset_bottom = -90.0
+theme_override_styles/background = SubResource("StyleBoxFlat_cy2a2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_poeq1")
+value = 100.0
+show_percentage = false
+script = ExtResource("5_ola4u")
+
+[node name="DeathFX" type="Marker2D" parent="."]
+script = ExtResource("10_b3vyy")
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(2.08165e-12, -8)
+shape = SubResource("CircleShape2D_dengc")
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("12_qfbvj")
+
+[node name="Move" type="Node2D" parent="StateMachine"]
+script = ExtResource("13_76fq7")
+
+[node name="Default" type="Node2D" parent="StateMachine"]
+script = ExtResource("14_km1mb")
+
+[node name="Charge" type="Node2D" parent="StateMachine"]
+script = ExtResource("15_8eu5o")
+
+[node name="Special" type="Node2D" parent="StateMachine"]
+script = ExtResource("16_5l8x7")
+
+[node name="Defend" type="Node2D" parent="StateMachine"]
+script = ExtResource("15_fbd2v")
+
+[node name="Attack" type="Node2D" parent="StateMachine"]
+script = ExtResource("16_xfg34")
+
+[connection signal="damaged" from="DirectionFlipper/HurtBox" to="HealthBar" method="on_damaged"]
+[connection signal="health_depleted" from="HealthBar" to="." method="destroy"]

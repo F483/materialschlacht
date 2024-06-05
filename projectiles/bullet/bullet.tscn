@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://0y7pbtfqj5gx"]
+
+[ext_resource type="Script" path="res://projectiles/bullet/bullet.gd" id="1_gbk1l"]
+[ext_resource type="Resource" uid="uid://djfgrsp82whxg" path="res://projectiles/bullet/faction_player.tres" id="2_rkfc2"]
+[ext_resource type="Script" path="res://components/hit_box.gd" id="3_exo1b"]
+[ext_resource type="Script" path="res://components/spawner.gd" id="4_4f8pm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wflvx"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x26p2"]
+size = Vector2(6, 6)
+
+[node name="Bullet" type="Area2D"]
+top_level = true
+collision_layer = 65537
+collision_mask = 17891601
+script = ExtResource("1_gbk1l")
+faction = ExtResource("2_rkfc2")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+polygon = PackedVector2Array(4, 4, -4, 4, -4, -2.08165e-12, -4, -4, 4, -4)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 71304256
+script = ExtResource("3_exo1b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("RectangleShape2D_wflvx")
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_x26p2")
+
+[node name="DeathFX" type="Marker2D" parent="."]
+z_index = 1
+z_as_relative = false
+script = ExtResource("4_4f8pm")
+extra_rotation = 180.0
+extra_scale = 0.2
+scene_name = "MuzzleFlash"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

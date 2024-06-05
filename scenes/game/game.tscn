@@ -1,0 +1,187 @@
+[gd_scene load_steps=10 format=3 uid="uid://cruh7nl4gnr56"]
+
+[ext_resource type="Script" path="res://scenes/game/game.gd" id="1_8il21"]
+[ext_resource type="Script" path="res://scenes/game/PlayerUnits.gd" id="3_3dea1"]
+[ext_resource type="PackedScene" uid="uid://c6w63m5cnqer3" path="res://entities/enemies/boar/boar.tscn" id="5_u6mqt"]
+[ext_resource type="Script" path="res://scenes/game/camera.gd" id="6_3thky"]
+[ext_resource type="Script" path="res://scenes/game/selection_box.gd" id="6_8q4y2"]
+[ext_resource type="PackedScene" uid="uid://2ak1wb4r1f7g" path="res://maps/TestKenny1Bit.tscn" id="8_dbxih"]
+[ext_resource type="AudioStream" uid="uid://bi8k0a8jypia0" path="res://music/Studio Picalquers - Demo - Sunk.mp3" id="8_tfx0b"]
+[ext_resource type="PackedScene" uid="uid://bg5l5dskd8qgu" path="res://entities/puny/puny.tscn" id="9_odphb"]
+
+[sub_resource type="Curve2D" id="Curve2D_jixfc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -3684, -475, 0, 0, 0, 0, -323, -548, 0, 0, 0, 0, -304, 1731, 0, 0, 0, 0, -3737, 1823)
+}
+point_count = 4
+
+[node name="Game" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_8il21")
+
+[node name="TestKenny1Bit" parent="." instance=ExtResource("8_dbxih")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("6_3thky")
+
+[node name="Path2D" type="Path2D" parent="Camera2D"]
+position = Vector2(2072, -544)
+curve = SubResource("Curve2D_jixfc")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Camera2D/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-3684, -475)
+rotation = -0.0217163
+
+[node name="SelectionBox" type="Node2D" parent="Camera2D"]
+z_index = 666
+script = ExtResource("6_8q4y2")
+collision_mask = 17891601
+box_outline_width = 1
+
+[node name="Enemies" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Boar11" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(512, 3619)
+
+[node name="Boar" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(468, 1808)
+
+[node name="Boar2" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(235, 1135)
+
+[node name="Boar3" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(362, 1129)
+
+[node name="Boar4" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(88, 1254)
+
+[node name="Boar5" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(263, 653)
+
+[node name="Boar6" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(444, 873)
+
+[node name="Boar7" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(79, 868)
+
+[node name="Boar8" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(228, 828)
+
+[node name="Boar9" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(372, 704)
+
+[node name="Boar10" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(102, 656)
+
+[node name="Boar12" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(362, 318)
+
+[node name="Boar13" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(260, 226)
+
+[node name="Boar14" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(140, 395)
+
+[node name="Boar15" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(108, 681)
+
+[node name="Boar16" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(308, 938)
+
+[node name="Boar17" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(139, 1151)
+
+[node name="Boar18" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(306, 1473)
+
+[node name="Boar19" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(258, 1320)
+
+[node name="Boar20" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(115, 1443)
+
+[node name="Boar21" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(405, 1418)
+
+[node name="Boar22" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(129, 1723)
+
+[node name="Boar23" parent="Enemies" instance=ExtResource("5_u6mqt")]
+position = Vector2(149, 1621)
+
+[node name="PlayerUnits" type="Node2D" parent="."]
+unique_name_in_owner = true
+y_sort_enabled = true
+script = ExtResource("3_3dea1")
+
+[node name="Puny" parent="PlayerUnits" instance=ExtResource("9_odphb")]
+position = Vector2(388, 1741)
+
+[node name="Puny2" parent="PlayerUnits" instance=ExtResource("9_odphb")]
+position = Vector2(379, 1849)
+
+[node name="Puny3" parent="PlayerUnits" instance=ExtResource("9_odphb")]
+position = Vector2(252, 1913)
+
+[node name="Puny4" parent="PlayerUnits" instance=ExtResource("9_odphb")]
+position = Vector2(250, 1759)
+
+[node name="Puny5" parent="PlayerUnits" instance=ExtResource("9_odphb")]
+position = Vector2(293, 1745)
+
+[node name="Puny6" parent="PlayerUnits" instance=ExtResource("9_odphb")]
+position = Vector2(311, 1897)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="GameOverScreen" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.760784)
+
+[node name="Label" type="Label" parent="GameOverScreen/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 221
+text = "GAME OVER"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_tfx0b")
+volume_db = -12.0
+
+[connection signal="selected_entities" from="Camera2D/SelectionBox" to="." method="_on_selected_entities"]
+[connection signal="selected_position" from="Camera2D/SelectionBox" to="." method="_on_selected_position"]
+[connection signal="timeout" from="Timer" to="." method="spawn_enemy"]

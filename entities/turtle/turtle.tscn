@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://bf6rup62wsx72"]
+
+[ext_resource type="Script" path="res://entities/turtle/turtle.gd" id="1_k40iu"]
+[ext_resource type="Texture2D" uid="uid://6d7266vv6r85" path="res://entities/turtle/turtle.png" id="2_0hp3m"]
+[ext_resource type="Script" path="res://components/health_bar.gd" id="3_kfupg"]
+[ext_resource type="Script" path="res://components/hurt_box.gd" id="4_s3f8k"]
+[ext_resource type="Script" path="res://components/spawner.gd" id="5_ky1d8"]
+[ext_resource type="PackedScene" uid="uid://cnhky05u0kess" path="res://weapons/pistol/pistol.tscn" id="6_dtjkj"]
+[ext_resource type="Resource" path="res://factions/enemy.tres" id="7_idhvb"]
+[ext_resource type="Script" path="res://components/flag.gd" id="7_w6cye"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f7bgp"]
+radius = 35.0143
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mxv30"]
+radius = 23.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_23kx8"]
+bg_color = Color(0.152941, 0.168627, 0.188235, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y1hjk"]
+bg_color = Color(1, 0.254902, 0.490196, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Turtle" type="CharacterBody2D"]
+scale = Vector2(-1, 1)
+collision_layer = 129
+collision_mask = 17
+input_pickable = true
+script = ExtResource("1_k40iu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_0hp3m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_f7bgp")
+
+[node name="Pistol" parent="." instance=ExtResource("6_dtjkj")]
+position = Vector2(27, 0)
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 32
+script = ExtResource("4_s3f8k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(26, 8)
+shape = SubResource("CircleShape2D_mxv30")
+debug_color = Color(0.905882, 0.215686, 0.537255, 0.419608)
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -48.0
+offset_top = -63.0
+offset_right = 48.0
+offset_bottom = -47.0
+theme_override_styles/background = SubResource("StyleBoxFlat_23kx8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_y1hjk")
+value = 100.0
+show_percentage = false
+script = ExtResource("3_kfupg")
+
+[node name="Flag" type="Polygon2D" parent="."]
+visible = false
+position = Vector2(-46, -129)
+color = Color(0, 0.596078, 0, 1)
+polygon = PackedVector2Array(1, -43, 93, -23, 1, 0)
+script = ExtResource("7_w6cye")
+faction = ExtResource("7_idhvb")
+
+[node name="DeathFX" type="Marker2D" parent="."]
+script = ExtResource("5_ky1d8")
+
+[connection signal="fired" from="Pistol" to="Flag" method="transfer"]
+[connection signal="damaged" from="HurtBox" to="HealthBar" method="damage"]
+[connection signal="health_depleted" from="HealthBar" to="." method="queue_free"]
+[connection signal="health_depleted" from="HealthBar" to="DeathFX" method="trigger"]
+[connection signal="updated_char_layer" from="Flag" to="." method="set_collision_layer"]
+[connection signal="updated_char_mask" from="Flag" to="." method="set_collision_mask"]
+[connection signal="updated_color" from="Flag" to="Flag" method="set_color"]
+[connection signal="updated_hurtbox_layer" from="Flag" to="HurtBox" method="set_collision_layer"]
+[connection signal="updated_hurtbox_mask" from="Flag" to="HurtBox" method="set_collision_mask"]
+[connection signal="updated_weapon_layer" from="Flag" to="Pistol" method="set_collision_layer"]
+[connection signal="updated_weapon_mask" from="Flag" to="Pistol" method="set_collision_mask"]

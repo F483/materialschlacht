@@ -1,0 +1,106 @@
+[gd_scene load_steps=16 format=3 uid="uid://bv6i5v6in48fx"]
+
+[ext_resource type="Script" path="res://entities/spider/spider.gd" id="1_m5gkm"]
+[ext_resource type="Script" path="res://components/health_bar.gd" id="2_ojn5n"]
+[ext_resource type="Resource" uid="uid://bcnftg82m5rpd" path="res://entities/spider/faction_enemy.tres" id="2_x3pap"]
+[ext_resource type="Texture2D" uid="uid://bwchnslb66din" path="res://entities/spider/spider.png" id="3_pjqb8"]
+[ext_resource type="Script" path="res://components/direction_flipper.gd" id="3_r1nmm"]
+[ext_resource type="Script" path="res://components/hurt_box.gd" id="4_i3t43"]
+[ext_resource type="Script" path="res://components/hit_box.gd" id="5_xesm1"]
+[ext_resource type="Script" path="res://components/spawner.gd" id="9_olrpq"]
+[ext_resource type="Script" path="res://components/movement.gd" id="9_symjd"]
+[ext_resource type="Script" path="res://components/selection.gd" id="10_2ceiu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fjug"]
+bg_color = Color(0.152941, 0.168627, 0.188235, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jivgi"]
+bg_color = Color(1, 0.254902, 0.490196, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_avdf0"]
+radius = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1frj0"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e7q00"]
+radius = 6.0
+
+[node name="Spider" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 129
+collision_mask = 17
+script = ExtResource("1_m5gkm")
+faction = ExtResource("2_x3pap")
+
+[node name="Selection" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, -24)
+script = ExtResource("10_2ceiu")
+selected = false
+rect = Rect2(-16, -24, 32, 48)
+outline_color = Color(1, 0, 0, 1)
+draw_box = false
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -24.0
+offset_top = -58.0
+offset_right = 24.0
+offset_bottom = -50.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5fjug")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jivgi")
+max_value = 30.0
+value = 30.0
+show_percentage = false
+script = ExtResource("2_ojn5n")
+
+[node name="DirectionFlipper" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, -24)
+script = ExtResource("3_r1nmm")
+
+[node name="Sprite2D" type="Sprite2D" parent="DirectionFlipper"]
+texture_filter = 1
+texture = ExtResource("3_pjqb8")
+
+[node name="HitBox" type="Area2D" parent="DirectionFlipper"]
+collision_layer = 256
+collision_mask = 0
+script = ExtResource("5_xesm1")
+dammage = 666.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DirectionFlipper/HitBox"]
+shape = SubResource("CircleShape2D_avdf0")
+
+[node name="HurtBox" type="Area2D" parent="DirectionFlipper"]
+collision_layer = 512
+collision_mask = 32
+script = ExtResource("4_i3t43")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DirectionFlipper/HurtBox"]
+shape = SubResource("CapsuleShape2D_1frj0")
+debug_color = Color(0.905882, 0.215686, 0.537255, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.08165e-12, -8)
+shape = SubResource("CircleShape2D_e7q00")
+
+[node name="DeathFX" type="Marker2D" parent="."]
+visible = false
+script = ExtResource("9_olrpq")
+
+[node name="Movement" type="Node2D" parent="."]
+script = ExtResource("9_symjd")
+movement_speed = 32.0
+movement_tolerance = 1.0
+
+[connection signal="health_depleted" from="HealthBar" to="." method="destroy"]
+[connection signal="damaged" from="DirectionFlipper/HurtBox" to="HealthBar" method="on_damaged"]
+[connection signal="damaged" from="DirectionFlipper/HurtBox" to="Movement" method="on_damaged"]

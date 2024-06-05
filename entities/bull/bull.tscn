@@ -1,0 +1,115 @@
+[gd_scene load_steps=20 format=3 uid="uid://dq02w0u2g86nx"]
+
+[ext_resource type="Script" path="res://entities/bull/bull.gd" id="1_hl2g7"]
+[ext_resource type="Resource" uid="uid://b5p54cvgbxean" path="res://entities/bull/faction_enemy.tres" id="2_1x118"]
+[ext_resource type="Texture2D" uid="uid://l0n3ta7d684f" path="res://entities/bull/bull.png" id="2_e38hn"]
+[ext_resource type="Script" path="res://components/direction_flipper.gd" id="4_c0pfc"]
+[ext_resource type="Script" path="res://components/hurt_box.gd" id="6_3segg"]
+[ext_resource type="PackedScene" uid="uid://dw6qjtvj7g6a" path="res://weapons/rifle/rifle.tscn" id="7_ednp6"]
+[ext_resource type="Resource" uid="uid://c03v2s6p8mfse" path="res://weapons/rifle/faction_enemy.tres" id="8_2plms"]
+[ext_resource type="Script" path="res://components/movement.gd" id="8_y73ab"]
+[ext_resource type="Script" path="res://components/health_bar.gd" id="9_my14e"]
+[ext_resource type="Script" path="res://components/spawner.gd" id="10_ehsue"]
+[ext_resource type="Script" path="res://components/state/state_machine.gd" id="11_7wigi"]
+[ext_resource type="Script" path="res://components/state/states/attack_move.gd" id="16_adnnj"]
+[ext_resource type="Script" path="res://components/state/states/attack.gd" id="17_1v12n"]
+[ext_resource type="Script" path="res://components/state/states/engage_player.gd" id="17_5cpb3"]
+[ext_resource type="Script" path="res://components/state/states/victory_dance.gd" id="18_edpul"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kfv2e"]
+radius = 16.0
+height = 64.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cy2a2"]
+bg_color = Color(0.152941, 0.168627, 0.188235, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_poeq1"]
+bg_color = Color(1, 0.254902, 0.490196, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dengc"]
+radius = 14.0
+
+[node name="Bull" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 17
+collision_mask = 131
+input_pickable = true
+script = ExtResource("1_hl2g7")
+faction = ExtResource("2_1x118")
+
+[node name="DirectionFlipper" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, -40)
+script = ExtResource("4_c0pfc")
+
+[node name="Sprite2D" type="Sprite2D" parent="DirectionFlipper"]
+unique_name_in_owner = true
+texture_filter = 1
+texture = ExtResource("2_e38hn")
+
+[node name="HurtBox" type="Area2D" parent="DirectionFlipper"]
+unique_name_in_owner = true
+collision_layer = 64
+collision_mask = 256
+script = ExtResource("6_3segg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DirectionFlipper/HurtBox"]
+shape = SubResource("CapsuleShape2D_kfv2e")
+debug_color = Color(0.905882, 0.215686, 0.537255, 0.419608)
+
+[node name="Weapon" parent="DirectionFlipper" instance=ExtResource("7_ednp6")]
+unique_name_in_owner = true
+cycle_time = 1.0
+primary_faction = ExtResource("8_2plms")
+secondary_faction = ExtResource("8_2plms")
+faction = ExtResource("8_2plms")
+
+[node name="Movement" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("8_y73ab")
+movement_speed = 64.0
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -32.0
+offset_top = -98.0
+offset_right = 32.0
+offset_bottom = -90.0
+theme_override_styles/background = SubResource("StyleBoxFlat_cy2a2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_poeq1")
+value = 100.0
+show_percentage = false
+script = ExtResource("9_my14e")
+
+[node name="DeathFX" type="Marker2D" parent="."]
+script = ExtResource("10_ehsue")
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(2.08165e-12, -8)
+shape = SubResource("CircleShape2D_dengc")
+
+[node name="StateMachine" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("11_7wigi")
+
+[node name="Attack" type="Node2D" parent="StateMachine"]
+script = ExtResource("17_1v12n")
+
+[node name="AttackMove" type="Node2D" parent="StateMachine"]
+script = ExtResource("16_adnnj")
+
+[node name="Default" type="Node2D" parent="StateMachine"]
+script = ExtResource("17_5cpb3")
+
+[node name="VictoryDance" type="Node2D" parent="StateMachine"]
+script = ExtResource("18_edpul")
+
+[connection signal="damaged" from="DirectionFlipper/HurtBox" to="HealthBar" method="on_damaged"]
+[connection signal="health_depleted" from="HealthBar" to="." method="destroy"]

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Faction" load_steps=2 format=3 uid="uid://djfgrsp82whxg"]
+
+[ext_resource type="Script" path="res://resources/faction.gd" id="1_vqjbq"]
+
+[resource]
+script = ExtResource("1_vqjbq")
+name = "Player"
+color_primary = Color(0.341176, 0.341176, 1, 1)
+color_secondary = Color(0, 0, 0.658824, 1)
+object_layer = 65537
+object_mask = 17920273
+hitbox_layer = 131074
+hitbox_mask = 71304256
+hurtbox_layer = 0
+hurtbox_mask = 0
+targeting_layer = 0
+targeting_mask = 0

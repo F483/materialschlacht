@@ -1,0 +1,106 @@
+[gd_scene load_steps=16 format=3 uid="uid://be0urenbji8lr"]
+
+[ext_resource type="Script" path="res://entities/drone/drone.gd" id="1_31hc5"]
+[ext_resource type="Resource" uid="uid://df17ymo6hbfct" path="res://entities/drone/faction_enemy.tres" id="2_2ss7q"]
+[ext_resource type="Script" path="res://components/selection.gd" id="3_0r2wf"]
+[ext_resource type="Script" path="res://components/health_bar.gd" id="4_ld1b7"]
+[ext_resource type="Script" path="res://components/direction_flipper.gd" id="5_62nwe"]
+[ext_resource type="Texture2D" uid="uid://dotbxhuqk4qg2" path="res://entities/drone/drone.png" id="6_altgj"]
+[ext_resource type="Script" path="res://components/hit_box.gd" id="7_2d1yi"]
+[ext_resource type="Script" path="res://components/hurt_box.gd" id="8_6kk64"]
+[ext_resource type="Script" path="res://components/spawner.gd" id="9_us486"]
+[ext_resource type="Script" path="res://components/movement.gd" id="10_ug1xc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fjug"]
+bg_color = Color(0.152941, 0.168627, 0.188235, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jivgi"]
+bg_color = Color(1, 0.254902, 0.490196, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_avdf0"]
+radius = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1frj0"]
+radius = 8.0
+height = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e7q00"]
+radius = 6.0
+
+[node name="Drone" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 129
+collision_mask = 17
+script = ExtResource("1_31hc5")
+faction = ExtResource("2_2ss7q")
+
+[node name="Selection" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, -24)
+script = ExtResource("3_0r2wf")
+selected = false
+rect = Rect2(-16, -24, 32, 32)
+outline_color = Color(1, 0, 0, 1)
+draw_box = false
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -24.0
+offset_top = -58.0
+offset_right = 24.0
+offset_bottom = -50.0
+theme_override_styles/background = SubResource("StyleBoxFlat_5fjug")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jivgi")
+max_value = 30.0
+value = 30.0
+show_percentage = false
+script = ExtResource("4_ld1b7")
+
+[node name="DirectionFlipper" type="Node2D" parent="."]
+position = Vector2(2.08165e-12, -24)
+script = ExtResource("5_62nwe")
+
+[node name="Sprite2D" type="Sprite2D" parent="DirectionFlipper"]
+texture_filter = 1
+texture = ExtResource("6_altgj")
+
+[node name="HitBox" type="Area2D" parent="DirectionFlipper"]
+collision_layer = 256
+collision_mask = 0
+script = ExtResource("7_2d1yi")
+dammage = 666.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DirectionFlipper/HitBox"]
+shape = SubResource("CircleShape2D_avdf0")
+
+[node name="HurtBox" type="Area2D" parent="DirectionFlipper"]
+collision_layer = 512
+collision_mask = 32
+script = ExtResource("8_6kk64")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DirectionFlipper/HurtBox"]
+shape = SubResource("CapsuleShape2D_1frj0")
+debug_color = Color(0.905882, 0.215686, 0.537255, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.08165e-12, -8)
+shape = SubResource("CircleShape2D_e7q00")
+
+[node name="DeathFX" type="Marker2D" parent="."]
+visible = false
+script = ExtResource("9_us486")
+
+[node name="Movement" type="Node2D" parent="."]
+script = ExtResource("10_ug1xc")
+movement_speed = 48.0
+movement_tolerance = 1.0
+
+[connection signal="health_depleted" from="HealthBar" to="." method="destroy"]
+[connection signal="damaged" from="DirectionFlipper/HurtBox" to="HealthBar" method="on_damaged"]
+[connection signal="damaged" from="DirectionFlipper/HurtBox" to="Movement" method="on_damaged"]
