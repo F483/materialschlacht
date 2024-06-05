@@ -1,7 +1,7 @@
 extends Node2D
 
 # SETTINGS
-@export var disable_spawn_enemy: bool = false
+@export var disable_spawn_enemy: bool = true
 # TODO add setting_speed
 
 # MECHANICS
