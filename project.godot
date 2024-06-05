@@ -83,6 +83,7 @@ config/icon="res://icon.png"
 
 Config="*res://config.gd"
 Utils="*res://utils.gd"
+Sound="*res://sound.gd"
 
 [display]
 

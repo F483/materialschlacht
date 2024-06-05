@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scenes/game/camera.gd" id="6_3thky"]
 [ext_resource type="Script" path="res://scenes/game/selection_box.gd" id="6_8q4y2"]
 [ext_resource type="PackedScene" uid="uid://2ak1wb4r1f7g" path="res://maps/TestKenny1Bit.tscn" id="8_dbxih"]
-[ext_resource type="AudioStream" uid="uid://bi8k0a8jypia0" path="res://music/Studio Picalquers - Demo - Sunk.mp3" id="8_tfx0b"]
+[ext_resource type="AudioStream" uid="uid://dt4ooakl25g6k" path="res://music/Studio Picalquers - Demo - Sunk.mp3" id="8_tfx0b"]
 [ext_resource type="PackedScene" uid="uid://bg5l5dskd8qgu" path="res://entities/puny/puny.tscn" id="9_odphb"]
 
 [sub_resource type="Curve2D" id="Curve2D_jixfc"]

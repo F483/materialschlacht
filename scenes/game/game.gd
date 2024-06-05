@@ -33,6 +33,10 @@ const ENEMY_RESOURCES = {
 
 var selected_entities: Dictionary = {}
 
+func _ready():
+	select_player_entities(%PlayerUnits.get_children())
+	%MusicPlayer.play()
+	
 func spawn_enemy(spawn_position: Vector2 = Vector2.ZERO):
 	
 	var enemy_names = ENEMY_RESOURCES.keys()
@@ -76,10 +80,6 @@ func clear_selection():
 		selection.set_selected_off()
 	selected_entities.clear()
 
-func _ready():
-	select_player_entities(%PlayerUnits.get_children())
-	%MusicPlayer.play()
-	
 func select_player_entities(player_entities):
 	clear_selection()
 	for entity in player_entities:
