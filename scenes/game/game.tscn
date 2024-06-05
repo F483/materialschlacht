@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cruh7nl4gnr56"]
+[gd_scene load_steps=9 format=3 uid="uid://cruh7nl4gnr56"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_8il21"]
 [ext_resource type="Script" path="res://scenes/game/PlayerUnits.gd" id="3_3dea1"]
@@ -8,12 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://2ak1wb4r1f7g" path="res://maps/TestKenny1Bit.tscn" id="8_dbxih"]
 [ext_resource type="AudioStream" uid="uid://dt4ooakl25g6k" path="res://music/Studio Picalquers - Demo - Sunk.mp3" id="8_tfx0b"]
 [ext_resource type="PackedScene" uid="uid://bg5l5dskd8qgu" path="res://entities/puny/puny.tscn" id="9_odphb"]
-
-[sub_resource type="Curve2D" id="Curve2D_jixfc"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -3684, -475, 0, 0, 0, 0, -323, -548, 0, 0, 0, 0, -304, 1731, 0, 0, 0, 0, -3737, 1823)
-}
-point_count = 4
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -34,15 +28,6 @@ color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("6_3thky")
-
-[node name="Path2D" type="Path2D" parent="Camera2D"]
-position = Vector2(2072, -544)
-curve = SubResource("Curve2D_jixfc")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Camera2D/Path2D"]
-unique_name_in_owner = true
-position = Vector2(-3684, -475)
-rotation = -0.0217163
 
 [node name="SelectionBox" type="Node2D" parent="Camera2D"]
 z_index = 666

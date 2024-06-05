@@ -38,19 +38,19 @@ func _ready():
 	%MusicPlayer.play()
 	
 func spawn_enemy(spawn_position: Vector2 = Vector2.ZERO):
-	
+	if disable_spawn_enemy:
+		return # FIXME enable and add objective destructable spawn nodes to map
+		
 	var enemy_names = ENEMY_RESOURCES.keys()
 	var random_index = randi() % enemy_names.size()
 	var enemy_name = enemy_names[random_index]
 	var enemy = ENEMY_RESOURCES[enemy_name].instantiate()
-	
-	if not disable_spawn_enemy:
-		if spawn_position:
-			enemy.global_position = spawn_position
-		else:
-			%PathFollow2D.progress_ratio = randf()
-			enemy.global_position = %PathFollow2D.global_position
-		%Enemies.add_child(enemy)
+	if spawn_position:
+		enemy.global_position = spawn_position
+	else:
+		%PathFollow2D.progress_ratio = randf()
+		enemy.global_position = %PathFollow2D.global_position
+	%Enemies.add_child(enemy)
 
 func check_game_over():
 	if not %PlayerUnits.get_children():
