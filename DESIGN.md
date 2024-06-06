@@ -1,8 +1,6 @@
-# Materialschlacht
+# Design
 
-[![License](https://img.shields.io/badge/License-MIT-brightgreen.svg)](LICENSE)
-
-### Alternative subtitle
+## Possible subtitle
 
  * Micro Offensive
  * Crossing the line
