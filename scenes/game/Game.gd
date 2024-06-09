@@ -118,6 +118,8 @@ func _input(event):
 				entity.get_node("StateMachine").change_state(
 					"DodgeRoll", {"target": get_global_mouse_position()}
 				)
+		elif event.pressed and event.button_index == Config.select_button_index:
+			pass # Check if mouse over entity
 		elif event.pressed and event.button_index == Config.secondary_button_index:
 			for object_id in selected_entities:
 				var entity = selected_entities[object_id]

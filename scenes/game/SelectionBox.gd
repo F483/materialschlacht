@@ -6,10 +6,9 @@ signal selected_entities(value: Array[Dictionary])
 signal selected_position(value: Vector2)
 
 @export_flags_2d_physics var collision_mask: int = 0
-@export var max_results: int = 32
 @export var box_fill_color: Color = Color(0, 1 ,0 , 0.1)
 @export var box_outline_color: Color = Color(0, 1 ,0 , 1)
-@export var box_outline_width: int = 2
+@export var box_outline_width: int = 1
 
 var dragging: bool = false
 var drag_start: Vector2 = Vector2.ZERO
@@ -68,17 +67,9 @@ func get_selecton_rect(global: bool) -> Rect2:
 
 func do_selection():
 	var global_rect = get_selecton_rect(true)
-	var select_rect = RectangleShape2D.new()
-	select_rect.extents = abs(global_rect.size) / 2
-	var space = get_world_2d().direct_space_state
-	var parameters = PhysicsShapeQueryParameters2D.new()
-	parameters.shape = select_rect
-	parameters.collision_mask = collision_mask
-	parameters.transform = Transform2D(0, (
-		(global_rect.position + global_rect.size) + global_rect.position
-	) / 2)
-	var selected = space.intersect_shape(parameters, max_results)
-	
+	var selected = Utils.query_world_rect(
+		get_world_2d(), global_rect, collision_mask
+	)
 	if selected:
 		selected_entities.emit(selected)
 	else:

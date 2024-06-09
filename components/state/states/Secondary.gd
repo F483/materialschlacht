@@ -2,8 +2,8 @@ extends State
 
 class_name Secondary
 
-@export var line_color: Color = Color(0, 1 ,0 , 1)
-@export var line_width: int = 2
+@export var line_color: Color = Color(1, 0 ,0 , 1)
+@export var line_width: int = 1
 
 var charging: bool = false
 var charge_time: float = 0.0

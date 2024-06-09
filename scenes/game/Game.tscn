@@ -40,7 +40,6 @@ unique_name_in_owner = true
 z_index = 666
 script = ExtResource("4_ghd0c")
 collision_mask = 17891345
-box_outline_width = 1
 
 [node name="Enemies" type="Node2D" parent="."]
 unique_name_in_owner = true

@@ -11,6 +11,23 @@ func get_2dchildren(node: Node) -> Array[Node2D]:
 			result.append(child)
 	return result
 
+func query_world_rect(
+	world: World2D, 
+	rect: Rect2, 
+	collision_mask: int,
+	max_results: int = 32
+) -> Array[Dictionary]:
+	var select_rect = RectangleShape2D.new()
+	select_rect.extents = abs(rect.size) / 2
+	var space = world.direct_space_state
+	var parameters = PhysicsShapeQueryParameters2D.new()
+	parameters.shape = select_rect
+	parameters.collision_mask = collision_mask
+	parameters.transform = Transform2D(0, (
+		(rect.position + rect.size) + rect.position
+	) / 2)
+	return space.intersect_shape(parameters, max_results)
+
 func find_closest(node: Node2D, nodes: Array[Node2D]) -> Node2D:
 	var clsoset_dist = 0
 	var closest_node = null

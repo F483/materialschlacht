@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://components/state/state_machine.gd" id="5_kbxhl"]
 [ext_resource type="Script" path="res://components/state/states/move.gd" id="6_r7nl3"]
 [ext_resource type="Script" path="res://components/state/states/hold.gd" id="7_rbdlc"]
-[ext_resource type="Script" path="res://components/state/states/Secondary.gd" id="8_wj5sr"]
+[ext_resource type="Script" path="res://components/state/states/Secondary.gd" id="8_2sbw3"]
 [ext_resource type="Script" path="res://components/state/states/dodge_roll.gd" id="9_4q3be"]
 [ext_resource type="Script" path="res://components/state/states/defend.gd" id="10_tdutp"]
 [ext_resource type="Script" path="res://components/state/states/attack.gd" id="11_00eta"]
@@ -236,7 +236,7 @@ script = ExtResource("6_r7nl3")
 script = ExtResource("7_rbdlc")
 
 [node name="Secondary" type="Node2D" parent="StateMachine"]
-script = ExtResource("8_wj5sr")
+script = ExtResource("8_2sbw3")
 
 [node name="DodgeRoll" type="Node2D" parent="StateMachine"]
 script = ExtResource("9_4q3be")
