@@ -41,20 +41,29 @@ func _input(event):
 
 func _draw():
 	if dragging:
-		var viewport_rect = get_viewport().get_visible_rect()
-		var viewport_offset = viewport_rect.size / 2
-		var rect = Rect2(drag_start - viewport_offset, drag_end - drag_start)
+		var rect = get_selecton_rect(false)
 		draw_rect(rect, box_fill_color, true)
 		draw_rect(rect, box_outline_color, false, box_outline_width)
 
-func do_selection():
+func get_selecton_rect(global: bool) -> Rect2:
 	var viewport_rect = get_viewport().get_visible_rect()
 	var viewport_offset = viewport_rect.size / 2
-	var global_rect = Rect2(
-		drag_start + global_position - viewport_offset, 
-		drag_end - drag_start
+	var camera_offset = (
+		%Camera2D.get_screen_center_position() - %Camera2D.global_position
 	)
-	
+	if global:
+		return Rect2(
+			drag_start + camera_offset + global_position - viewport_offset, 
+			drag_end - drag_start
+		)
+	else:
+		return Rect2(
+			drag_start + camera_offset - viewport_offset, 
+			drag_end - drag_start
+		)
+
+func do_selection():
+	var global_rect = get_selecton_rect(true)
 	var select_rect = RectangleShape2D.new()
 	select_rect.extents = abs(global_rect.size) / 2
 	var space = get_world_2d().direct_space_state

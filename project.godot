@@ -84,6 +84,7 @@ config/icon="res://icon.png"
 Config="*res://config.gd"
 Utils="*res://utils.gd"
 Sound="*res://sound.gd"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [display]
 
@@ -107,7 +108,7 @@ movie_writer/movie_file="/Users/f483/dev/materialschlacht/recordings/latest.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/colorpicker_presets/plugin.cfg", "res://addons/ridiculous_coding/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/colorpicker_presets/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/ridiculous_coding/plugin.cfg")
 
 [input]
 

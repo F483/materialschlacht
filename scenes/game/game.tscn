@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scenes/game/camera.gd" id="6_3thky"]
 [ext_resource type="Script" path="res://scenes/game/selection_box.gd" id="6_8q4y2"]
 [ext_resource type="PackedScene" uid="uid://2ak1wb4r1f7g" path="res://maps/TestKenny1Bit.tscn" id="8_dbxih"]
-[ext_resource type="AudioStream" uid="uid://dt4ooakl25g6k" path="res://music/Studio Picalquers - Demo - Sunk.mp3" id="8_tfx0b"]
+[ext_resource type="AudioStream" uid="uid://c6u4yobc614t3" path="res://music/Studio Picalquers - Demo - Sunk.mp3" id="8_tfx0b"]
 [ext_resource type="PackedScene" uid="uid://bg5l5dskd8qgu" path="res://entities/puny/puny.tscn" id="9_odphb"]
 
 [node name="Game" type="Node2D"]
@@ -28,9 +28,15 @@ grow_vertical = 2
 color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+limit_left = 0
+limit_top = 0
+limit_right = 512
+limit_bottom = 2048
 script = ExtResource("6_3thky")
 
 [node name="SelectionBox" type="Node2D" parent="Camera2D"]
+unique_name_in_owner = true
 z_index = 666
 script = ExtResource("6_8q4y2")
 collision_mask = 17891601
