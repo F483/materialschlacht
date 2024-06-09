@@ -1,6 +1,6 @@
 extends State
 
-class_name Cast
+class_name Secondary
 
 @export var line_color: Color = Color(0, 1 ,0 , 1)
 @export var line_width: int = 2
@@ -20,10 +20,10 @@ func enter(_kwargs):
 func _input(event):
 	if charging:
 		if event is InputEventMouseButton:
-			if event.button_index == Config.charge_button_index and not event.pressed:
-				print("TODO emit charge release event")
+			if event.button_index == Config.secondary_button_index and not event.pressed:
+				print("TODO emit secondary release event")
 			else:
-				print("TODO emit charge cancelled event")
+				print("TODO emit secondary cancelled event")
 			transitioned.emit("Default", {})
 			queue_redraw()
 

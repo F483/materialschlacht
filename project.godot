@@ -75,13 +75,13 @@ Settings/Show_Tooltips=true
 [application]
 
 config/name="Materialschlacht"
-run/main_scene="res://scenes/game/game.tscn"
+run/main_scene="res://scenes/game/Game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.png"
 
 [autoload]
 
-Config="*res://config.gd"
+Config="*res://Config.gd"
 Utils="*res://utils.gd"
 Sound="*res://sound.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
@@ -108,7 +108,7 @@ movie_writer/movie_file="/Users/f483/dev/materialschlacht/recordings/latest.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/colorpicker_presets/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/ridiculous_coding/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/colorpicker_presets/plugin.cfg", "res://addons/ridiculous_coding/plugin.cfg")
 
 [input]
 

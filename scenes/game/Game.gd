@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Game
+
 # SETTINGS
 @export var disable_spawn_enemy: bool = true
 # TODO add setting_speed
@@ -116,10 +118,10 @@ func _input(event):
 				entity.get_node("StateMachine").change_state(
 					"DodgeRoll", {"target": get_global_mouse_position()}
 				)
-		elif event.pressed and event.button_index == Config.charge_button_index:
+		elif event.pressed and event.button_index == Config.secondary_button_index:
 			for object_id in selected_entities:
 				var entity = selected_entities[object_id]
-				entity.get_node("StateMachine").change_state("Cast", {})
+				entity.get_node("StateMachine").change_state("Secondary", {})
 
 func _on_selected_position(selected_position):
 	if selected_entities:

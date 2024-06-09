@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://entities/enemies/boar/boar.gd" id="1_jupw4"]
 [ext_resource type="Resource" uid="uid://njtb40pi75ka" path="res://entities/enemies/boar/faction.tres" id="2_p87sg"]
 [ext_resource type="Script" path="res://components/health_bar.gd" id="3_l2ywf"]
-[ext_resource type="Texture2D" uid="uid://badpo8ufeu201" path="res://asset_packs/PUNY_MONSTERS_v1/Boar2.png" id="4_1fu71"]
+[ext_resource type="Texture2D" uid="uid://dovy0d8mfqpp8" path="res://asset_packs/PUNY_MONSTERS_v1/Boar2.png" id="4_1fu71"]
 [ext_resource type="Script" path="res://components/hit_box.gd" id="5_1u3ew"]
 [ext_resource type="Script" path="res://components/hurt_box.gd" id="6_5pi78"]
 [ext_resource type="Script" path="res://components/spawner.gd" id="7_3rocx"]
