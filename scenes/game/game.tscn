@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/game/PlayerUnits.gd" id="3_3dea1"]
 [ext_resource type="PackedScene" uid="uid://c6w63m5cnqer3" path="res://entities/enemies/boar/boar.tscn" id="5_u6mqt"]
 [ext_resource type="Script" path="res://scenes/game/camera.gd" id="6_3thky"]
-[ext_resource type="Script" path="res://scenes/game/selection_box.gd" id="6_8q4y2"]
+[ext_resource type="Script" path="res://scenes/game/SelectionBox.gd" id="6_8q4y2"]
 [ext_resource type="PackedScene" uid="uid://2ak1wb4r1f7g" path="res://maps/TestKenny1Bit.tscn" id="8_dbxih"]
 [ext_resource type="AudioStream" uid="uid://c6u4yobc614t3" path="res://music/Studio Picalquers - Demo - Sunk.mp3" id="8_tfx0b"]
 [ext_resource type="PackedScene" uid="uid://bg5l5dskd8qgu" path="res://entities/puny/puny.tscn" id="9_odphb"]
@@ -39,7 +39,7 @@ script = ExtResource("6_3thky")
 unique_name_in_owner = true
 z_index = 666
 script = ExtResource("6_8q4y2")
-collision_mask = 17891601
+collision_mask = 17891345
 box_outline_width = 1
 
 [node name="Enemies" type="Node2D" parent="."]

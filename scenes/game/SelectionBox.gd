@@ -39,6 +39,10 @@ func _input(event):
 		drag_end = event.position
 		queue_redraw()
 
+func _process(delta):
+	if dragging:
+		queue_redraw()
+
 func _draw():
 	if dragging:
 		var rect = get_selecton_rect(false)
