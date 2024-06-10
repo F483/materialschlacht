@@ -8,17 +8,17 @@ class_name Attack
 var targets: Array[Node2D] = []
 
 func enter(kwargs):
-	targets = kwargs["targets"]
-	%Weapon.safty = false
+    targets = kwargs["targets"]
+    %Weapon.safty = false
 
 func process(_delta: float):
-	targets = Utils.filter_invalid(targets)
-	if targets.size() == 0:
-		transitioned.emit("Default", {})
-	else:
-		var enemy = Utils.find_closest(self.owner, targets)
-		%Weapon.aim_at(enemy)
+    targets = Utils.filter_invalid(targets)
+    if targets.size() == 0:
+        transitioned.emit("Default", {})
+    else:
+        var enemy = Utils.find_closest(self.owner, targets)
+        %Weapon.aim_at(enemy)
 
 func exit():
-	%Weapon.safty = true
-	%Weapon.aim_at(null)
+    %Weapon.safty = true
+    %Weapon.aim_at(null)

@@ -8,14 +8,14 @@ class_name HitBox
 @export var disabled: bool = false
 
 func _ready():
-	self.owner.faction_updated.connect(set_faction_data)
-	self.area_entered.connect(_on_area_entered)
-	set_faction_data(self.owner.faction)
+    self.owner.faction_updated.connect(set_faction_data)
+    self.area_entered.connect(_on_area_entered)
+    set_faction_data(self.owner.faction)
 
 func set_faction_data(faction: Faction):
-	collision_layer = faction.hitbox_layer
-	collision_mask = faction.hitbox_mask
+    collision_layer = faction.hitbox_layer
+    collision_mask = faction.hitbox_mask
 
 func _on_area_entered(hurtbox: HurtBox):
-	if not disabled and not hurtbox.disabled:
-		hurtbox.damaged.emit(self)
+    if not disabled and not hurtbox.disabled:
+        hurtbox.damaged.emit(self)

@@ -30,106 +30,109 @@ class_name Game
 # TODO add c_noclip
 
 const ENEMY_RESOURCES = {
-	"Boar": preload("res://entities/enemies/boar/boar.tscn"),
+    "Boar": preload("res://entities/enemies/boar/boar.tscn"),
 }
 
 var selected_entities: Dictionary = {}
 
 func _ready():
-	select_player_entities(%PlayerUnits.get_children())
-	%MusicPlayer.play()
-	
+    select_player_entities(%PlayerUnits.get_children())
+    %MusicPlayer.play()
+    # FIXME set camera limits based on map size
+    
 func spawn_enemy(spawn_position: Vector2 = Vector2.ZERO):
-	if disable_spawn_enemy:
-		return # FIXME enable and add objective destructable spawn nodes to map
-		
-	var enemy_names = ENEMY_RESOURCES.keys()
-	var random_index = randi() % enemy_names.size()
-	var enemy_name = enemy_names[random_index]
-	var enemy = ENEMY_RESOURCES[enemy_name].instantiate()
-	if spawn_position:
-		enemy.global_position = spawn_position
-	else:
-		%PathFollow2D.progress_ratio = randf()
-		enemy.global_position = %PathFollow2D.global_position
-	%Enemies.add_child(enemy)
+    if disable_spawn_enemy:
+        return # FIXME enable and add objective destructable spawn nodes to map
+        
+    var enemy_names = ENEMY_RESOURCES.keys()
+    var random_index = randi() % enemy_names.size()
+    var enemy_name = enemy_names[random_index]
+    var enemy = ENEMY_RESOURCES[enemy_name].instantiate()
+    if spawn_position:
+        enemy.global_position = spawn_position
+    else:
+        %PathFollow2D.progress_ratio = randf()
+        enemy.global_position = %PathFollow2D.global_position
+    %Enemies.add_child(enemy)
 
 func check_game_over():
-	if not %PlayerUnits.get_children():
-		game_over()
-		
+    if not %PlayerUnits.get_children():
+        game_over()
+        
 func _physics_process(_delta):
-	check_game_over()
+    check_game_over()
 
 func game_over():
-	%GameOverScreen.visible = true
-	get_tree().paused = true
+    %GameOverScreen.visible = true
+    get_tree().paused = true
 
 func unselect(entity):
-	var object_id = entity.get_instance_id()
-	if selected_entities.has(object_id):
-		var selected_entity = selected_entities[object_id]
-		assert(selected_entity == entity, "ERROR: object id missmatch!")
-		var selection = entity.get_node("Selection")
-		selection.set_selected_off()
-		return selected_entities.erase(object_id)
-	return false
-	
+    var object_id = entity.get_instance_id()
+    if selected_entities.has(object_id):
+        var selected_entity = selected_entities[object_id]
+        assert(selected_entity == entity, "ERROR: object id missmatch!")
+        var selection = entity.get_node("Selection")
+        selection.set_selected_off()
+        return selected_entities.erase(object_id)
+    return false
+    
 func clear_selection():
-	for object_id in selected_entities:
-		var entity = selected_entities[object_id]
-		var selection = entity.get_node("Selection")
-		selection.set_selected_off()
-	selected_entities.clear()
+    for object_id in selected_entities:
+        var entity = selected_entities[object_id]
+        var selection = entity.get_node("Selection")
+        selection.set_selected_off()
+    selected_entities.clear()
 
 func select_player_entities(player_entities):
-	clear_selection()
-	for entity in player_entities:
-		var selection = entity.get_node("Selection")
-		selection.set_selected_on()
-		selected_entities[entity.get_instance_id()] = entity
-	
+    clear_selection()
+    for entity in player_entities:
+        var selection = entity.get_node("Selection")
+        selection.set_selected_on()
+        selected_entities[entity.get_instance_id()] = entity
+    
 func _on_selected_entities(input_entities):
-	if input_entities["player"]:
-		select_player_entities(input_entities["player"])
-	elif input_entities["enemy"] and selected_entities:
-		for object_id in selected_entities:
-			var entity = selected_entities[object_id]
-			entity.get_node("StateMachine").change_state(
-				"Attack", {"targets": input_entities["enemy"]}
-			)
+    if input_entities["player"]:
+        select_player_entities(input_entities["player"])
+    elif input_entities["enemy"] and selected_entities:
+        for object_id in selected_entities:
+            var entity = selected_entities[object_id]
+            entity.get_node("StateMachine").change_state(
+                "Attack", {"targets": input_entities["enemy"]}
+            )
 
 func _input(event):
-	if event is InputEventMouseButton:
-		if event.double_click:
-			for object_id in selected_entities:
-				var entity = selected_entities[object_id]
-				entity.get_node("StateMachine").change_state(
-					"DodgeRoll", {"target": get_global_mouse_position()}
-				)
-		elif event.pressed and event.button_index == Config.select_button_index:
-			var global_rect = Rect2(get_global_mouse_position(), Vector2(1, 1))
-			var selected = Utils.query_world_rect(
-				get_world_2d(), global_rect, %SelectionBox.collision_mask
-			)
-			print("Selected: ", selected)
-			if selected:
-				# TODO check if mouse over entity
-				# TODO disable selection box
-				# TODO select clicked unit
-				# TODO change unit state
-				# TODO store mode change in game
-				# TODO handle release
-				print(selected)
-		elif event.pressed and event.button_index == Config.secondary_button_index:
-			for object_id in selected_entities:
-				var entity = selected_entities[object_id]
-				entity.get_node("StateMachine").change_state("Secondary", {})
+    if event is InputEventMouseButton:
+        if event.double_click:
+            for object_id in selected_entities:
+                var entity = selected_entities[object_id]
+                entity.get_node("StateMachine").change_state(
+                    "DodgeRoll", {"target": get_global_mouse_position()}
+                )
+        elif event.pressed and event.button_index == Config.select_button_index:
+            var global_rect = Rect2(get_global_mouse_position(), Vector2(1, 1))
+            var selected = Utils.query_world_rect(
+                get_world_2d(), global_rect, %SelectionBox.collision_mask
+            )
+            print("Selected: ", selected)
+            if selected:
+                var entities = Utils.sort_query_world_entities(selected)
+                if entities["player"]:
+                    # TODO disable selection box
+                    select_player_entities(entities["player"])
+                    # TODO change unit state
+                    # TODO store mode change in game
+                    # TODO handle release
+                elif entities["enemy"] and selected_entities:
+                    pass # TODO atta ck with current selection
+        elif event.pressed and event.button_index == Config.secondary_button_index:
+            for object_id in selected_entities:
+                var entity = selected_entities[object_id]
+                entity.get_node("StateMachine").change_state("Secondary", {})
 
 func _on_selected_position(selected_position):
-	if selected_entities:
-		for object_id in selected_entities:
-			var entity = selected_entities[object_id]
-			entity.get_node("StateMachine").change_state(
-				"Move", {"target": selected_position}
-			)
+    if selected_entities:
+        for object_id in selected_entities:
+            var entity = selected_entities[object_id]
+            entity.get_node("StateMachine").change_state(
+                "Move", {"target": selected_position}
+            )

@@ -20,14 +20,14 @@ class_name DirectionSelector
 ## TODO on ready validate vars make sense respective to sprite 2d data
 
 func _process(_delta):
-	if %Movement.target:
-		var pos = self.owner.global_position
-		var angle = pos.direction_to(%Movement.target).angle()
-		var index = int(snapped(angle, (2*PI)/frames) / ((2*PI)/frames))
-		if lookup:
-			%Sprite2D.frame_coords.y = lookup[wrapi(index, 0, frames)]
-		else:
-			if counterclockwise:
-				%Sprite2D.frame_coords.y = wrapi(offset - index, 0, frames)
-			else:
-				%Sprite2D.frame_coords.y = wrapi(offset + index, 0, frames)
+    if %Movement.target:
+        var pos = self.owner.global_position
+        var angle = pos.direction_to(%Movement.target).angle()
+        var index = int(snapped(angle, (2*PI)/frames) / ((2*PI)/frames))
+        if lookup:
+            %Sprite2D.frame_coords.y = lookup[wrapi(index, 0, frames)]
+        else:
+            if counterclockwise:
+                %Sprite2D.frame_coords.y = wrapi(offset - index, 0, frames)
+            else:
+                %Sprite2D.frame_coords.y = wrapi(offset + index, 0, frames)

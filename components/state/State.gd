@@ -5,13 +5,13 @@ class_name State
 signal transitioned(next_state_name: String)
 
 func enter(_kwargs):
-	pass
+    pass
 
 func exit():
-	pass
+    pass
 
 func process(_delta: float):
-	pass
+    pass
 
 func physics_process(_delta: float):
-	pass
+    pass
