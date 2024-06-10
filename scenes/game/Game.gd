@@ -90,24 +90,13 @@ func select_player_entities(player_entities):
 		selected_entities[entity.get_instance_id()] = entity
 	
 func _on_selected_entities(input_entities):
-	var entities_player: Array[Node2D] = []
-	var entities_enemy: Array[Node2D] = []
-	var entities_neutral: Array[Node2D] = []
-	for entry in input_entities:
-		var entity = entry["collider"]
-		if entity.faction.name == "Player":
-			entities_player.append(entity)
-		elif entity.faction.name == "Enemy":
-			entities_enemy.append(entity)
-		else:
-			entities_neutral.append(entity)
-	if entities_player:
-		select_player_entities(entities_player)
-	elif entities_enemy and selected_entities:
+	if input_entities["player"]:
+		select_player_entities(input_entities["player"])
+	elif input_entities["enemy"] and selected_entities:
 		for object_id in selected_entities:
 			var entity = selected_entities[object_id]
 			entity.get_node("StateMachine").change_state(
-				"Attack", {"targets": entities_enemy}
+				"Attack", {"targets": input_entities["enemy"]}
 			)
 
 func _input(event):
@@ -119,7 +108,19 @@ func _input(event):
 					"DodgeRoll", {"target": get_global_mouse_position()}
 				)
 		elif event.pressed and event.button_index == Config.select_button_index:
-			pass # Check if mouse over entity
+			var global_rect = Rect2(get_global_mouse_position(), Vector2(1, 1))
+			var selected = Utils.query_world_rect(
+				get_world_2d(), global_rect, %SelectionBox.collision_mask
+			)
+			print("Selected: ", selected)
+			if selected:
+				# TODO check if mouse over entity
+				# TODO disable selection box
+				# TODO select clicked unit
+				# TODO change unit state
+				# TODO store mode change in game
+				# TODO handle release
+				print(selected)
 		elif event.pressed and event.button_index == Config.secondary_button_index:
 			for object_id in selected_entities:
 				var entity = selected_entities[object_id]

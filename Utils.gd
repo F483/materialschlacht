@@ -11,6 +11,24 @@ func get_2dchildren(node: Node) -> Array[Node2D]:
 			result.append(child)
 	return result
 
+func sort_query_world_entities(
+  input_entities: Array[Dictionary]
+) -> Dictionary:
+	var result = {
+		"player": [] as Array[Node2D],
+		"enemy": [] as Array[Node2D],
+		"neutral": [] as Array[Node2D],
+	}
+	for entry in input_entities:
+		var entity = entry["collider"]
+		if entity.faction.name == "Player":
+			result["player"].append(entity)
+		elif entity.faction.name == "Enemy":
+			result["enemy"].append(entity)
+		else:
+			result["neutral"].append(entity)
+	return result
+
 func query_world_rect(
 	world: World2D, 
 	rect: Rect2, 

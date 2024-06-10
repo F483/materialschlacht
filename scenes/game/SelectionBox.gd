@@ -71,7 +71,7 @@ func do_selection():
 		get_world_2d(), global_rect, collision_mask
 	)
 	if selected:
-		selected_entities.emit(selected)
+		selected_entities.emit(Utils.sort_query_world_entities(selected))
 	else:
 		var point = global_rect.position + global_rect.size / 2
 		selected_position.emit(point)
