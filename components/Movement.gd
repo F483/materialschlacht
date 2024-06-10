@@ -6,11 +6,16 @@ signal stopped
 signal stuck
 signal arrived
 
+@export var draw_path: bool = false
+
 @export var movement_disabled: bool = false
 @export var movement_speed: float = 100.0
 
 @export var knockback_disabled: bool = false
 @export var knockback_factor: float = 1.0
+
+@export var line_color: Color = Color(1, 1 ,0 , 1)
+@export var line_width: int = -1
 
 var knockback_vec: Vector2 = Vector2.ZERO
 var knockback_ttl: float = 0.0
@@ -62,3 +67,15 @@ func _physics_process(delta):
             stuck.emit()
     
     knockback_ttl -= delta
+    if draw_path:
+        queue_redraw()
+
+func _draw():
+    if draw_path and target:
+        draw_line(
+            Vector2.ZERO, 
+            target - self.owner.global_position, 
+            line_color, 
+            line_width, 
+            false
+        )

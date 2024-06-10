@@ -10,8 +10,8 @@ class_name Selection
         queue_redraw()
 
 @export var rect: Rect2 = Rect2(-32, -48, 64, 96)
-@export var fill_color: Color = Color(0, 1 ,0 , 0.1)
-@export var outline_color: Color = Color(0, 1 ,0 , 1)
+@export var fill_color: Color = Color(1, 1 ,0 , 0.1)
+@export var outline_color: Color = Color(1, 1 ,0 , 1)
 @export var outline_width: int = 2
 @export var draw_box: bool = true
 @export var draw_iso: bool = true

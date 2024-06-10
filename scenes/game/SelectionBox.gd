@@ -6,8 +6,8 @@ signal selected_entities(value: Array[Dictionary])
 signal selected_position(value: Vector2)
 
 @export_flags_2d_physics var collision_mask: int = 0
-@export var box_fill_color: Color = Color(0, 1 ,0 , 0.1)
-@export var box_outline_color: Color = Color(0, 1 ,0 , 1)
+@export var box_fill_color: Color = Color(1, 1 ,0 , 0.1)
+@export var box_outline_color: Color = Color(1, 1 ,0 , 1)
 @export var box_outline_width: int = 1
 
 @export var disabled: bool = false:
