@@ -19,7 +19,6 @@ func enter(kwargs):
 	%Movement.arrived.connect(on_movement_done)
 	%Movement.movement_speed *= 10.0
 	%Movement.movement_tolerance *= 10.0
-	%Sprite2D.set_texture(self.owner.SPRITES["Bash"])
 	time_lapsed = 0.0
 
 func process(delta: float):

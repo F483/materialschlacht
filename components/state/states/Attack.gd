@@ -10,7 +10,6 @@ var targets: Array[Node2D] = []
 func enter(kwargs):
 	targets = kwargs["targets"]
 	%Weapon.safty = false
-	# %Sprite2D.set_texture(self.owner.SPRITES["Weapon"])
 
 func process(_delta: float):
 	targets = Utils.filter_invalid(targets)

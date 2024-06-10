@@ -1,6 +1,6 @@
 extends State
 
-class_name Move # TODO rename to walk
+class_name Move
 
 var target: Vector2 = Vector2.ZERO
 
@@ -12,7 +12,7 @@ func enter(kwargs):
 	%Movement.stopped.connect(on_movement_done)
 	%Movement.stuck.connect(on_movement_done)
 	%Movement.arrived.connect(on_movement_done)
-	%AnimationPlayer.play("Walk")
+	%AnimationPlayer.play("Move")
 
 func exit():
 	%Movement.stopped.disconnect(on_movement_done)

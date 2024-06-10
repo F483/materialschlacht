@@ -12,7 +12,6 @@ func enter(kwargs):
 	%Movement.stopped.connect(on_movement_done)
 	%Movement.stuck.connect(on_movement_done)
 	%Movement.arrived.connect(on_movement_done)
-	%Sprite2D.set_texture(self.owner.SPRITES["Move"])
 	
 func process(_delta: float):
 	# TODO hook weapon.body_entered to for transition instead, push over poll!

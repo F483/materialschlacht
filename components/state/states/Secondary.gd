@@ -12,7 +12,6 @@ func enter(_kwargs):
 	%Movement.knockback_disabled = true
 	%Movement.movement_disabled = true
 	%Movement.stop()
-	# %Sprite2D.set_texture(self.owner.SPRITES["Hold"])
 	charging = true
 	charge_time = 0.0
 	queue_redraw()

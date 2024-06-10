@@ -4,7 +4,6 @@ class_name Defend
 
 func enter(kwargs):
 	%Weapon.safty = false
-	# %Sprite2D.set_texture(self.owner.SPRITES["Weapon"])
 
 func process(_delta: float):
 	var enemies = %Weapon.find_targetable_enemies()
