@@ -3,7 +3,7 @@ extends State
 class_name Secondary
 
 @export var line_color: Color = Color(1, 0 ,0 , 1)
-@export var line_width: int = 1
+@export var line_width: int = -1
 
 var charging: bool = false
 var charge_time: float = 0.0
@@ -19,7 +19,10 @@ func enter(_kwargs):
 func _input(event):
     if charging:
         if event is InputEventMouseButton:
-            if event.button_index == Config.secondary_button_index and not event.pressed:
+            if (
+                event.button_index == Config.secondary_button_index 
+                and not event.pressed
+            ):
                 print("TODO emit secondary release event")
             else:
                 print("TODO emit secondary cancelled event")

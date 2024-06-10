@@ -17,6 +17,12 @@ class_name Game
 ## Mechanic - Dodge Roll iframes: Units invulnerable during dodge roll.
 @export var m_dodgeroll_iframes: bool = true
 
+enum INPUT_MODE { 
+    BOX_SELECT, 
+    DRAG_SELECT  # FIXME factor out drag select into its own file
+}
+@export var input_mode: INPUT_MODE = INPUT_MODE.BOX_SELECT
+
 # TODO add m_cover
 # TODO add m_player_friendly_fire
 # TODO add m_enemy_friendly_fire
@@ -60,6 +66,13 @@ func check_game_over():
         game_over()
         
 func _physics_process(_delta):
+    if input_mode == INPUT_MODE.DRAG_SELECT:
+        for object_id in selected_entities:
+            var entity = selected_entities[object_id]
+            var move_state = entity.get_node("StateMachine").get_node("Move")
+            var movement = entity.get_node("Movement")
+            move_state.target = get_global_mouse_position()
+            movement.target = get_global_mouse_position()
     check_game_over()
 
 func game_over():
@@ -102,32 +115,53 @@ func _on_selected_entities(input_entities):
 
 func _input(event):
     if event is InputEventMouseButton:
+
         if event.double_click:
             for object_id in selected_entities:
                 var entity = selected_entities[object_id]
                 entity.get_node("StateMachine").change_state(
                     "DodgeRoll", {"target": get_global_mouse_position()}
                 )
-        elif event.pressed and event.button_index == Config.select_button_index:
+            return
+
+        if not event.pressed and input_mode == INPUT_MODE.DRAG_SELECT:
+            for object_id in selected_entities:
+                var entity = selected_entities[object_id]
+                entity.get_node("StateMachine").change_state(
+                    "Move", { "target": get_global_mouse_position() }
+                )
+            %SelectionBox.disabled = false
+            input_mode = INPUT_MODE.BOX_SELECT
+            return
+
+        if event.pressed and event.button_index == Config.secondary_button_index:
+            for object_id in selected_entities:
+                var entity = selected_entities[object_id]
+                entity.get_node("StateMachine").change_state("Secondary", {})
+            return
+
+        if event.pressed and event.button_index == Config.select_button_index:
             var global_rect = Rect2(get_global_mouse_position(), Vector2(1, 1))
             var selected = Utils.query_world_rect(
                 get_world_2d(), global_rect, %SelectionBox.collision_mask
             )
-            print("Selected: ", selected)
             if selected:
                 var entities = Utils.sort_query_world_entities(selected)
                 if entities["player"]:
-                    # TODO disable selection box
                     select_player_entities(entities["player"])
-                    # TODO change unit state
-                    # TODO store mode change in game
-                    # TODO handle release
+                    for object_id in selected_entities:
+                        var entity = selected_entities[object_id]
+                        entity.get_node("StateMachine").change_state(
+                            "Move", {
+                                "target": get_global_mouse_position(),
+                                "block_transition": true
+                            }
+                        )
+                    %SelectionBox.disabled = true
+                    input_mode = INPUT_MODE.DRAG_SELECT
                 elif entities["enemy"] and selected_entities:
-                    pass # TODO atta ck with current selection
-        elif event.pressed and event.button_index == Config.secondary_button_index:
-            for object_id in selected_entities:
-                var entity = selected_entities[object_id]
-                entity.get_node("StateMachine").change_state("Secondary", {})
+                    pass # TODO attack with current selection
+
 
 func _on_selected_position(selected_position):
     if selected_entities:
