@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name FeedbackDamage
+
 signal dealt_feedback(entity: Entity, amount: float)
 
 @export var factor: float = 2.0

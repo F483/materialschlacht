@@ -2,21 +2,21 @@
 
 [ext_resource type="Script" path="res://entities/puny/puny.gd" id="1_heyg1"]
 [ext_resource type="Resource" uid="uid://cd43v5yma5yd" path="res://entities/puny/faction_player.tres" id="2_5o02w"]
+[ext_resource type="Script" path="res://components/Selection.gd" id="3_1tq0h"]
 [ext_resource type="Texture2D" uid="uid://crnqlbldeou0i" path="res://asset_packs/Puny-Characters/Soldier-Red.png" id="3_h3unn"]
-[ext_resource type="Script" path="res://components/selection.gd" id="4_b617e"]
-[ext_resource type="Script" path="res://components/state/state_machine.gd" id="5_kbxhl"]
-[ext_resource type="Script" path="res://components/state/states/move.gd" id="6_r7nl3"]
-[ext_resource type="Script" path="res://components/state/states/hold.gd" id="7_rbdlc"]
+[ext_resource type="Script" path="res://components/state/StateMachine.gd" id="5_tcrjn"]
+[ext_resource type="Script" path="res://components/state/states/Move.gd" id="6_j23dn"]
+[ext_resource type="Script" path="res://components/state/states/Hold.gd" id="7_rehcu"]
 [ext_resource type="Script" path="res://components/state/states/Secondary.gd" id="8_2sbw3"]
-[ext_resource type="Script" path="res://components/state/states/dodge_roll.gd" id="9_4q3be"]
-[ext_resource type="Script" path="res://components/state/states/defend.gd" id="10_tdutp"]
-[ext_resource type="Script" path="res://components/state/states/attack.gd" id="11_00eta"]
-[ext_resource type="Script" path="res://components/movement.gd" id="12_n8vqv"]
+[ext_resource type="Script" path="res://components/state/states/DodgeRoll.gd" id="9_0jax2"]
+[ext_resource type="Script" path="res://components/state/states/Defend.gd" id="10_fir0m"]
+[ext_resource type="Script" path="res://components/state/states/Attack.gd" id="11_xutug"]
+[ext_resource type="Script" path="res://components/Movement.gd" id="12_x4cok"]
 [ext_resource type="PackedScene" uid="uid://dw6qjtvj7g6a" path="res://weapons/rifle/rifle.tscn" id="13_jjgml"]
-[ext_resource type="Script" path="res://components/spawner.gd" id="14_pvblm"]
-[ext_resource type="Script" path="res://components/hurt_box.gd" id="15_gpumt"]
-[ext_resource type="Script" path="res://components/health_bar.gd" id="16_illxl"]
-[ext_resource type="Script" path="res://components/direction_selector.gd" id="17_0tsea"]
+[ext_resource type="Script" path="res://components/Spawner.gd" id="14_rtks7"]
+[ext_resource type="Script" path="res://components/HurtBox.gd" id="15_ssow5"]
+[ext_resource type="Script" path="res://components/HealthBar.gd" id="16_euk7m"]
+[ext_resource type="Script" path="res://components/DirectionSelector.gd" id="17_bq38f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kp4bo"]
 radius = 4.0
@@ -205,7 +205,7 @@ faction = ExtResource("2_5o02w")
 shape = SubResource("CapsuleShape2D_kp4bo")
 
 [node name="Selection" type="Node2D" parent="."]
-script = ExtResource("4_b617e")
+script = ExtResource("3_1tq0h")
 rect = Rect2(-6, -8, 12, 16)
 fill_color = Color(0.321569, 0.321569, 0, 0.752941)
 outline_color = Color(1, 1, 0, 1)
@@ -227,29 +227,29 @@ libraries = {
 autoplay = "Idle"
 
 [node name="StateMachine" type="Node2D" parent="."]
-script = ExtResource("5_kbxhl")
+script = ExtResource("5_tcrjn")
 
 [node name="Move" type="Node2D" parent="StateMachine"]
-script = ExtResource("6_r7nl3")
+script = ExtResource("6_j23dn")
 
 [node name="Default" type="Node2D" parent="StateMachine"]
-script = ExtResource("7_rbdlc")
+script = ExtResource("7_rehcu")
 
 [node name="Secondary" type="Node2D" parent="StateMachine"]
 script = ExtResource("8_2sbw3")
 
 [node name="DodgeRoll" type="Node2D" parent="StateMachine"]
-script = ExtResource("9_4q3be")
+script = ExtResource("9_0jax2")
 
 [node name="Defend" type="Node2D" parent="StateMachine"]
-script = ExtResource("10_tdutp")
+script = ExtResource("10_fir0m")
 
 [node name="Attack" type="Node2D" parent="StateMachine"]
-script = ExtResource("11_00eta")
+script = ExtResource("11_xutug")
 
 [node name="Movement" type="Node2D" parent="."]
 unique_name_in_owner = true
-script = ExtResource("12_n8vqv")
+script = ExtResource("12_x4cok")
 movement_speed = 64.0
 
 [node name="Weapon" parent="." instance=ExtResource("13_jjgml")]
@@ -257,14 +257,14 @@ unique_name_in_owner = true
 position = Vector2(0, 1)
 
 [node name="DeathFX" type="Marker2D" parent="."]
-script = ExtResource("14_pvblm")
+script = ExtResource("14_rtks7")
 extra_scale = 0.25
 
 [node name="HurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 64
 collision_mask = 256
-script = ExtResource("15_gpumt")
+script = ExtResource("15_ssow5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CapsuleShape2D_lampi")
@@ -280,9 +280,9 @@ theme_override_styles/background = SubResource("StyleBoxFlat_1vutn")
 theme_override_styles/fill = SubResource("StyleBoxFlat_imsgn")
 value = 100.0
 show_percentage = false
-script = ExtResource("16_illxl")
+script = ExtResource("16_euk7m")
 
 [node name="DirectionSelector" type="Node2D" parent="."]
-script = ExtResource("17_0tsea")
+script = ExtResource("17_bq38f")
 offset = 2
 counterclockwise = true

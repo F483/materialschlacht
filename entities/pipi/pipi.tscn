@@ -1,15 +1,15 @@
 [gd_scene load_steps=14 format=3 uid="uid://fjom0esbu85s"]
 
 [ext_resource type="Script" path="res://entities/pipi/pipi.gd" id="1_88kcb"]
-[ext_resource type="Script" path="res://components/movement.gd" id="2_533kw"]
-[ext_resource type="Script" path="res://components/direction_flipper.gd" id="2_jc4eb"]
-[ext_resource type="Texture2D" uid="uid://dd8rquxdaafux" path="res://entities/pipi/pipi.png" id="2_tfm1f"]
-[ext_resource type="Script" path="res://components/hurt_box.gd" id="3_k2kfr"]
-[ext_resource type="Script" path="res://components/hit_box.gd" id="4_ow4fq"]
+[ext_resource type="Script" path="res://components/Movement.gd" id="2_533kw"]
+[ext_resource type="Script" path="res://components/DirectionFlipper.gd" id="2_jc4eb"]
+[ext_resource type="Texture2D" uid="uid://cb3xxxhnce6ac" path="res://entities/pipi/pipi.png" id="2_tfm1f"]
+[ext_resource type="Script" path="res://components/HurtBox.gd" id="3_k2kfr"]
+[ext_resource type="Script" path="res://components/HitBox.gd" id="4_ow4fq"]
 [ext_resource type="Script" path="res://components/flag.gd" id="5_o2bmx"]
-[ext_resource type="Resource" uid="uid://dd0i7ps2dkj6l" path="res://factions/neutral.tres" id="6_bihtx"]
-[ext_resource type="Script" path="res://components/feedback_damage.gd" id="7_ylri7"]
-[ext_resource type="Script" path="res://components/selection.gd" id="10_nhfpv"]
+[ext_resource type="Resource" path="res://factions/neutral.tres" id="6_bihtx"]
+[ext_resource type="Script" path="res://components/FeedbackDamage.gd" id="7_ylri7"]
+[ext_resource type="Script" path="res://components/Selection.gd" id="10_nhfpv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_om3gc"]
 radius = 6.0

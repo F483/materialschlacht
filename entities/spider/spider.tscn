@@ -1,15 +1,15 @@
 [gd_scene load_steps=16 format=3 uid="uid://bv6i5v6in48fx"]
 
 [ext_resource type="Script" path="res://entities/spider/spider.gd" id="1_m5gkm"]
-[ext_resource type="Script" path="res://components/health_bar.gd" id="2_ojn5n"]
+[ext_resource type="Script" path="res://components/HealthBar.gd" id="2_ojn5n"]
 [ext_resource type="Resource" uid="uid://bcnftg82m5rpd" path="res://entities/spider/faction_enemy.tres" id="2_x3pap"]
-[ext_resource type="Texture2D" uid="uid://bwchnslb66din" path="res://entities/spider/spider.png" id="3_pjqb8"]
-[ext_resource type="Script" path="res://components/direction_flipper.gd" id="3_r1nmm"]
-[ext_resource type="Script" path="res://components/hurt_box.gd" id="4_i3t43"]
-[ext_resource type="Script" path="res://components/hit_box.gd" id="5_xesm1"]
-[ext_resource type="Script" path="res://components/spawner.gd" id="9_olrpq"]
-[ext_resource type="Script" path="res://components/movement.gd" id="9_symjd"]
-[ext_resource type="Script" path="res://components/selection.gd" id="10_2ceiu"]
+[ext_resource type="Texture2D" uid="uid://dfcpisg7gqtlh" path="res://entities/spider/spider.png" id="3_pjqb8"]
+[ext_resource type="Script" path="res://components/DirectionFlipper.gd" id="3_r1nmm"]
+[ext_resource type="Script" path="res://components/HurtBox.gd" id="4_i3t43"]
+[ext_resource type="Script" path="res://components/HitBox.gd" id="5_xesm1"]
+[ext_resource type="Script" path="res://components/Spawner.gd" id="9_olrpq"]
+[ext_resource type="Script" path="res://components/Movement.gd" id="9_symjd"]
+[ext_resource type="Script" path="res://components/Selection.gd" id="10_2ceiu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fjug"]
 bg_color = Color(0.152941, 0.168627, 0.188235, 1)

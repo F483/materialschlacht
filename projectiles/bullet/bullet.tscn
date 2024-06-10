@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://projectiles/bullet/bullet.gd" id="1_gbk1l"]
 [ext_resource type="Resource" uid="uid://djfgrsp82whxg" path="res://projectiles/bullet/faction_player.tres" id="2_rkfc2"]
-[ext_resource type="Script" path="res://components/hit_box.gd" id="3_exo1b"]
-[ext_resource type="Script" path="res://components/spawner.gd" id="4_4f8pm"]
+[ext_resource type="Script" path="res://components/HitBox.gd" id="3_exo1b"]
+[ext_resource type="Script" path="res://components/Spawner.gd" id="4_4f8pm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wflvx"]
 size = Vector2(8, 8)

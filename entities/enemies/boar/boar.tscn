@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://entities/enemies/boar/boar.gd" id="1_jupw4"]
 [ext_resource type="Resource" uid="uid://njtb40pi75ka" path="res://entities/enemies/boar/faction.tres" id="2_p87sg"]
-[ext_resource type="Script" path="res://components/health_bar.gd" id="3_l2ywf"]
+[ext_resource type="Script" path="res://components/HealthBar.gd" id="3_occlc"]
 [ext_resource type="Texture2D" uid="uid://dovy0d8mfqpp8" path="res://asset_packs/PUNY_MONSTERS_v1/Boar2.png" id="4_1fu71"]
-[ext_resource type="Script" path="res://components/hit_box.gd" id="5_1u3ew"]
-[ext_resource type="Script" path="res://components/hurt_box.gd" id="6_5pi78"]
-[ext_resource type="Script" path="res://components/spawner.gd" id="7_3rocx"]
-[ext_resource type="Script" path="res://components/movement.gd" id="8_d6wt0"]
-[ext_resource type="Script" path="res://components/direction_selector.gd" id="9_oew25"]
+[ext_resource type="Script" path="res://components/HitBox.gd" id="5_s1ucj"]
+[ext_resource type="Script" path="res://components/HurtBox.gd" id="6_n1krk"]
+[ext_resource type="Script" path="res://components/Spawner.gd" id="7_8arhs"]
+[ext_resource type="Script" path="res://components/Movement.gd" id="8_o88v7"]
+[ext_resource type="Script" path="res://components/DirectionSelector.gd" id="9_4ja5a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fjug"]
 bg_color = Color(0.152941, 0.168627, 0.188235, 1)
@@ -92,7 +92,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_jivgi")
 max_value = 30.0
 value = 30.0
 show_percentage = false
-script = ExtResource("3_l2ywf")
+script = ExtResource("3_occlc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -106,7 +106,7 @@ frame = 2
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 256
 collision_mask = 0
-script = ExtResource("5_1u3ew")
+script = ExtResource("5_s1ucj")
 dammage = 666.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
@@ -116,7 +116,7 @@ shape = SubResource("CircleShape2D_avdf0")
 unique_name_in_owner = true
 collision_layer = 512
 collision_mask = 32
-script = ExtResource("6_5pi78")
+script = ExtResource("6_n1krk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_1cqyx")
@@ -126,16 +126,16 @@ debug_color = Color(0.905882, 0.215686, 0.537255, 0.419608)
 shape = SubResource("CircleShape2D_e7q00")
 
 [node name="DeathFX" type="Marker2D" parent="."]
-script = ExtResource("7_3rocx")
+script = ExtResource("7_8arhs")
 extra_scale = 0.25
 
 [node name="Movement" type="Node2D" parent="."]
 unique_name_in_owner = true
-script = ExtResource("8_d6wt0")
+script = ExtResource("8_o88v7")
 movement_speed = 32.0
 
 [node name="DirectionSelector" type="Node2D" parent="."]
-script = ExtResource("9_oew25")
+script = ExtResource("9_4ja5a")
 frames = 4
 lookup = Array[int]([2, 0, 1, 3])
 
