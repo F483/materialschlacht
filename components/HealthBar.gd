@@ -11,13 +11,10 @@ signal health_recovered
 @export var disabled: bool = false
 @export var invulnerable: bool = false
 
-func heal(amount: float):
-    return change(abs(amount))
-
 func on_damaged(src_hitbox: HitBox):
     if invulnerable:
         return 0.0
-    return change(-abs(src_hitbox.dammage))
+    return change(-src_hitbox.dammage)
 
 func change(amount: float):
     if disabled or amount == 0.0:

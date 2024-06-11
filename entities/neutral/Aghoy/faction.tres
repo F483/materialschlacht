@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Faction" load_steps=2 format=3 uid="uid://btmdjbd6f1yvw"]
+
+[ext_resource type="Script" path="res://resources/faction.gd" id="1_f5wvc"]
+
+[resource]
+script = ExtResource("1_f5wvc")
+name = "Neutral"
+color_primary = Color(0.34, 1, 0.593, 1)
+color_secondary = Color(0, 0.66, 0.253, 1)
+object_layer = 65536
+object_mask = 17891328
+hitbox_layer = 2097152
+hitbox_mask = 262148
+hurtbox_layer = 4194304
+hurtbox_mask = 35782656
+targeting_layer = 0
+targeting_mask = 0

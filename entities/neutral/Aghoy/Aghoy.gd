@@ -8,7 +8,11 @@ func _ready():
     %HealthBar.health_depleted.connect(self.destroy)
     %HurtBox.damaged.connect(%HealthBar.on_damaged)
     %HurtBox.damaged.connect(%Movement.on_damaged)
+    %HitBox.damaged.connect(self._on_healed)
 
+func _on_healed(_dest_hurtbox: HurtBox):
+    self.destroy()
+    
 func _physics_process(_delta):
     # FIXME replace with state machine
     var children = Utils.get_2dchildren(player_units)

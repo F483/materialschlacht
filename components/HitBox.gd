@@ -7,6 +7,8 @@ class_name HitBox
 @export var knockback_time: float = 0.01
 @export var disabled: bool = false
 
+signal damaged(dest_hurtbox: HurtBox)
+
 func _ready():
     self.owner.faction_updated.connect(set_faction_data)
     self.area_entered.connect(_on_area_entered)
@@ -19,3 +21,4 @@ func set_faction_data(faction: Faction):
 func _on_area_entered(hurtbox: HurtBox):
     if not disabled and not hurtbox.disabled:
         hurtbox.damaged.emit(self)
+        self.damaged.emit(hurtbox)

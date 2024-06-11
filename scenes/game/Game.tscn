@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://scenes/game/SelectionBox.gd" id="4_ghd0c"]
 [ext_resource type="PackedScene" uid="uid://c6w63m5cnqer3" path="res://entities/enemies/boar/Boar.tscn" id="5_er8gu"]
 [ext_resource type="Script" path="res://scenes/game/PlayerUnits.gd" id="6_caxu3"]
-[ext_resource type="PackedScene" uid="uid://c0cnqs3d0jrf0" path="res://entities/enemies/Aghoy/Aghoy.tscn" id="6_e66sy"]
+[ext_resource type="PackedScene" uid="uid://c0cnqs3d0jrf0" path="res://entities/neutral/Aghoy/Aghoy.tscn" id="6_e66sy"]
 [ext_resource type="PackedScene" uid="uid://bg5l5dskd8qgu" path="res://entities/puny/puny.tscn" id="7_vmpsy"]
 [ext_resource type="AudioStream" uid="uid://c6u4yobc614t3" path="res://music/Studio Picalquers - Demo - Sunk.mp3" id="8_j8io2"]
 
@@ -152,6 +152,9 @@ position = Vector2(250, 1759)
 [node name="Puny5" parent="PlayerUnits" instance=ExtResource("7_vmpsy")]
 position = Vector2(293, 1745)
 
+[node name="HealthBar" parent="PlayerUnits/Puny5" index="9"]
+value = 10.0
+
 [node name="Puny6" parent="PlayerUnits" instance=ExtResource("7_vmpsy")]
 position = Vector2(311, 1897)
 
@@ -193,3 +196,5 @@ stream = ExtResource("8_j8io2")
 volume_db = -12.0
 
 [connection signal="timeout" from="Timer" to="." method="spawn_enemy"]
+
+[editable path="PlayerUnits/Puny5"]
