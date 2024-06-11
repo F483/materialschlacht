@@ -46,6 +46,7 @@
 
 ### Pillar - Techno Shooter
 
+ * Synths are lazers, percussion bullets, boom 💥
  * No options, difficulty etc, one normalized score.
  * But custom mode with access to all flags and vars. ⚒️
  * Armor do damagle threshold then reduces x% of what passed.

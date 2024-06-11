@@ -1,6 +1,6 @@
 extends State
 
-class_name Idle
+class_name Idle  # TODO rename to Hold everywhere
 
 func enter(_kwargs):
     %Movement.knockback_disabled = true

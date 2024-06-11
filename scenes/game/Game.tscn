@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cruh7nl4gnr56"]
+[gd_scene load_steps=10 format=3 uid="uid://cruh7nl4gnr56"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.gd" id="1_h1b5a"]
 [ext_resource type="PackedScene" uid="uid://2ak1wb4r1f7g" path="res://maps/TestKenny1Bit.tscn" id="2_34m4d"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/game/SelectionBox.gd" id="4_ghd0c"]
 [ext_resource type="PackedScene" uid="uid://c6w63m5cnqer3" path="res://entities/enemies/boar/boar.tscn" id="5_er8gu"]
 [ext_resource type="Script" path="res://scenes/game/PlayerUnits.gd" id="6_caxu3"]
+[ext_resource type="PackedScene" uid="uid://c0cnqs3d0jrf0" path="res://entities/enemies/Aghoy/Aghoy.tscn" id="6_e66sy"]
 [ext_resource type="PackedScene" uid="uid://bg5l5dskd8qgu" path="res://entities/puny/puny.tscn" id="7_vmpsy"]
 [ext_resource type="AudioStream" uid="uid://c6u4yobc614t3" path="res://music/Studio Picalquers - Demo - Sunk.mp3" id="8_j8io2"]
 
@@ -112,6 +113,24 @@ position = Vector2(129, 1723)
 
 [node name="Boar23" parent="Enemies" instance=ExtResource("5_er8gu")]
 position = Vector2(149, 1621)
+
+[node name="Aghoy" parent="Enemies" instance=ExtResource("6_e66sy")]
+position = Vector2(271, 1587)
+
+[node name="Aghoy2" parent="Enemies" instance=ExtResource("6_e66sy")]
+position = Vector2(227, 1437)
+
+[node name="Aghoy3" parent="Enemies" instance=ExtResource("6_e66sy")]
+position = Vector2(57, 1633)
+
+[node name="Aghoy4" parent="Enemies" instance=ExtResource("6_e66sy")]
+position = Vector2(428, 1598)
+
+[node name="Aghoy5" parent="Enemies" instance=ExtResource("6_e66sy")]
+position = Vector2(357, 1370)
+
+[node name="Aghoy6" parent="Enemies" instance=ExtResource("6_e66sy")]
+position = Vector2(138, 1345)
 
 [node name="PlayerUnits" type="Node2D" parent="."]
 unique_name_in_owner = true

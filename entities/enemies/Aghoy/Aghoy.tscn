@@ -1,14 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://c6w63m5cnqer3"]
+[gd_scene load_steps=18 format=3 uid="uid://c0cnqs3d0jrf0"]
 
-[ext_resource type="Script" path="res://entities/enemies/boar/boar.gd" id="1_jupw4"]
-[ext_resource type="Resource" uid="uid://njtb40pi75ka" path="res://entities/enemies/boar/faction.tres" id="2_p87sg"]
-[ext_resource type="Script" path="res://components/HealthBar.gd" id="3_occlc"]
-[ext_resource type="Texture2D" uid="uid://dovy0d8mfqpp8" path="res://asset_packs/PUNY_MONSTERS_v1/Boar2.png" id="4_1fu71"]
-[ext_resource type="Script" path="res://components/HitBox.gd" id="5_s1ucj"]
-[ext_resource type="Script" path="res://components/HurtBox.gd" id="6_n1krk"]
-[ext_resource type="Script" path="res://components/Spawner.gd" id="7_8arhs"]
-[ext_resource type="Script" path="res://components/Movement.gd" id="8_o88v7"]
-[ext_resource type="Script" path="res://components/DirectionSelector.gd" id="9_4ja5a"]
+[ext_resource type="Script" path="res://entities/enemies/Aghoy/Aghoy.gd" id="1_sbwc6"]
+[ext_resource type="Resource" uid="uid://btmdjbd6f1yvw" path="res://entities/enemies/Aghoy/faction.tres" id="2_5hbix"]
+[ext_resource type="Script" path="res://components/HealthBar.gd" id="3_mpy66"]
+[ext_resource type="Texture2D" uid="uid://chks4dajgl1uv" path="res://asset_packs/PUNY_MONSTERS_v1/Aghoy.png" id="4_og7xv"]
+[ext_resource type="Script" path="res://components/HitBox.gd" id="5_tgpxi"]
+[ext_resource type="Script" path="res://components/HurtBox.gd" id="6_4sj13"]
+[ext_resource type="Script" path="res://components/Spawner.gd" id="7_skx08"]
+[ext_resource type="Script" path="res://components/Movement.gd" id="8_6nc7y"]
+[ext_resource type="Script" path="res://components/DirectionSelector.gd" id="9_j4g6b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fjug"]
 bg_color = Color(0.152941, 0.168627, 0.188235, 1)
@@ -74,12 +74,12 @@ _data = {
 "Walk": SubResource("Animation_a42va")
 }
 
-[node name="Boar" type="CharacterBody2D"]
+[node name="Aghoy" type="CharacterBody2D"]
 collision_layer = 129
 collision_mask = 17
 motion_mode = 1
-script = ExtResource("1_jupw4")
-faction = ExtResource("2_p87sg")
+script = ExtResource("1_sbwc6")
+faction = ExtResource("2_5hbix")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
@@ -92,13 +92,13 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_jivgi")
 max_value = 30.0
 value = 30.0
 show_percentage = false
-script = ExtResource("3_occlc")
+script = ExtResource("3_mpy66")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
 position = Vector2(0, -4)
-texture = ExtResource("4_1fu71")
+texture = ExtResource("4_og7xv")
 hframes = 3
 vframes = 4
 frame = 1
@@ -106,7 +106,7 @@ frame = 1
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 256
 collision_mask = 0
-script = ExtResource("5_s1ucj")
+script = ExtResource("5_tgpxi")
 dammage = 666.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
@@ -116,7 +116,7 @@ shape = SubResource("CircleShape2D_avdf0")
 unique_name_in_owner = true
 collision_layer = 512
 collision_mask = 32
-script = ExtResource("6_n1krk")
+script = ExtResource("6_4sj13")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_1cqyx")
@@ -126,16 +126,16 @@ debug_color = Color(0.905882, 0.215686, 0.537255, 0.419608)
 shape = SubResource("CircleShape2D_e7q00")
 
 [node name="DeathFX" type="Marker2D" parent="."]
-script = ExtResource("7_8arhs")
+script = ExtResource("7_skx08")
 extra_scale = 0.25
 
 [node name="Movement" type="Node2D" parent="."]
 unique_name_in_owner = true
-script = ExtResource("8_o88v7")
-movement_speed = 32.0
+script = ExtResource("8_6nc7y")
+movement_speed = 16.0
 
 [node name="DirectionSelector" type="Node2D" parent="."]
-script = ExtResource("9_4ja5a")
+script = ExtResource("9_j4g6b")
 frames = 4
 lookup = Array[int]([2, 0, 1, 3])
 
