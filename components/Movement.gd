@@ -44,6 +44,7 @@ func stop():
     else:
         self.owner.velocity = Vector2.ZERO
     stopped.emit()
+    queue_redraw()
 
 func _physics_process(delta):
     var tolerance = movement_speed * tolerance_factor
@@ -67,7 +68,7 @@ func _physics_process(delta):
             stuck.emit()
     
     knockback_ttl -= delta
-    if draw_path:
+    if draw_path and target:
         queue_redraw()
 
 func _draw():

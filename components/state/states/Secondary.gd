@@ -23,9 +23,11 @@ func _input(event):
                 event.button_index == Config.secondary_button_index 
                 and not event.pressed
             ):
-                print("TODO emit secondary release event")
+                # TODO implement secondary reslease
+                print("Secondary: Release")
             else:
-                print("TODO emit secondary cancelled event")
+                # TODO implement secondary canceled
+                print("Secondary: Canceled")
             transitioned.emit("Default", {})
             queue_redraw()
 

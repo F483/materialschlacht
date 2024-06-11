@@ -113,55 +113,70 @@ func _on_selected_entities(input_entities):
                 "Attack", {"targets": input_entities["enemy"]}
             )
 
+func _change_state(name, kwargs):
+    for object_id in selected_entities:
+        var entity = selected_entities[object_id]
+        entity.get_node("StateMachine").change_state(name, kwargs)
+
 func _input(event):
     if event is InputEventMouseButton:
 
-        if event.double_click:
+        if (
+            input_mode == INPUT_MODE.DRAG_SELECT
+            and event.button_index == Config.select_button_index
+            and not event.pressed 
+        ):
             for object_id in selected_entities:
                 var entity = selected_entities[object_id]
-                entity.get_node("StateMachine").change_state(
-                    "DodgeRoll", {"target": get_global_mouse_position()}
-                )
-            return
-
-        if not event.pressed and input_mode == INPUT_MODE.DRAG_SELECT:
-            for object_id in selected_entities:
-                var entity = selected_entities[object_id]
-                entity.get_node("StateMachine").change_state(
-                    "Move", { "target": get_global_mouse_position() }
-                )
+                var move_state = entity.get_node("StateMachine").get_node("Move")
+                move_state.block_transition = false
             %SelectionBox.disabled = false
             input_mode = INPUT_MODE.BOX_SELECT
             return
 
-        if event.pressed and event.button_index == Config.secondary_button_index:
-            for object_id in selected_entities:
-                var entity = selected_entities[object_id]
-                entity.get_node("StateMachine").change_state("Secondary", {})
+        if event.double_click:
+            _change_state("DodgeRoll", {"target": get_global_mouse_position()})
             return
 
-        if event.pressed and event.button_index == Config.select_button_index:
+        if (
+            event.button_index == Config.secondary_button_index
+            and event.pressed
+        ):
+            # FIXME how to differentiate between draging on mobile!!!
+            #       hold over ~same spot for time?
+            _change_state("Secondary", {})
+            return
+
+        if (
+            event.button_index == Config.select_button_index
+            and event.pressed 
+        ):
             var global_rect = Rect2(get_global_mouse_position(), Vector2(1, 1))
             var selected = Utils.query_world_rect(
                 get_world_2d(), global_rect, %SelectionBox.collision_mask
             )
             if selected:
                 var entities = Utils.sort_query_world_entities(selected)
+                
                 if entities["player"]:
                     select_player_entities(entities["player"])
-                    for object_id in selected_entities:
-                        var entity = selected_entities[object_id]
-                        entity.get_node("StateMachine").change_state(
-                            "Move", {
-                                "target": get_global_mouse_position(),
-                                "block_transition": true
-                            }
-                        )
+                    _change_state("Move", {
+                        "target": get_global_mouse_position(),
+                        "block_transition": true
+                    })
                     %SelectionBox.disabled = true
                     input_mode = INPUT_MODE.DRAG_SELECT
+                    return
+                    
                 elif entities["enemy"] and selected_entities:
-                    pass # TODO attack with current selection
-
+                    # TODO implement attack with current selection
+                    return
+        
+        if (input_mode == INPUT_MODE.DRAG_SELECT):
+            %SelectionBox.disabled = false
+            input_mode = INPUT_MODE.BOX_SELECT
+            _change_state("Default", {})
+            return
 
 func _on_selected_position(selected_position):
     if selected_entities:

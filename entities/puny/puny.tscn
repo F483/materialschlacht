@@ -204,7 +204,6 @@ faction = ExtResource("2_5o02w")
 [node name="Movement" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("12_x4cok")
-draw_path = true
 movement_speed = 64.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -215,6 +214,7 @@ script = ExtResource("5_tcrjn")
 
 [node name="Move" type="Node2D" parent="StateMachine"]
 script = ExtResource("6_j23dn")
+draw_path = true
 
 [node name="Default" type="Node2D" parent="StateMachine"]
 script = ExtResource("7_3ge8s")
