@@ -84,15 +84,14 @@ config/icon="res://icon.png"
 Config="*res://Config.gd"
 Utils="*res://Utils.gd"
 Sound="*res://sound.gd"
-PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [display]
 
 window/size/viewport_width=256
 window/size/viewport_height=256
 window/size/always_on_top=true
-window/size/window_width_override=720
-window/size/window_height_override=1280
+window/size/window_width_override=320
+window/size/window_height_override=640
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/per_pixel_transparency/allowed=true
@@ -104,7 +103,8 @@ project/assembly_name="Getting started with Godot 4"
 
 [editor]
 
-movie_writer/movie_file="/Users/f483/dev/materialschlacht/recordings/latest.avi"
+movie_writer/mjpeg_quality=0.9
+movie_writer/movie_file="/home/f483/dev/materialschlacht/recordings/latest.avi"
 
 [editor_plugins]
 

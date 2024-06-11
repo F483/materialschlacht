@@ -111,10 +111,10 @@ func _on_selected_entities(input_entities):
             "targets": input_entities["enemy"]
         })
 
-func _change_state(name, kwargs):
+func _change_state(state_name, kwargs):
     for object_id in selected_entities:
         var entity = selected_entities[object_id]
-        entity.get_node("StateMachine").change_state(name, kwargs)
+        entity.get_node("StateMachine").change_state(state_name, kwargs)
 
 func _input(event):
     if event is InputEventMouseButton:
