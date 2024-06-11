@@ -39,13 +39,13 @@ script = ExtResource("3_id2dg")
 unique_name_in_owner = true
 z_index = 666
 script = ExtResource("4_ghd0c")
-collision_mask = 17891345
+collision_mask = 17891601
 
 [node name="Enemies" type="Node2D" parent="."]
 unique_name_in_owner = true
 
 [node name="Boar11" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(512, 3619)
+position = Vector2(512, 3620)
 
 [node name="Boar" parent="Enemies" instance=ExtResource("5_er8gu")]
 position = Vector2(468, 1808)
@@ -173,6 +173,4 @@ unique_name_in_owner = true
 stream = ExtResource("8_j8io2")
 volume_db = -12.0
 
-[connection signal="selected_entities" from="Camera2D/SelectionBox" to="." method="_on_selected_entities"]
-[connection signal="selected_position" from="Camera2D/SelectionBox" to="." method="_on_selected_position"]
 [connection signal="timeout" from="Timer" to="." method="spawn_enemy"]

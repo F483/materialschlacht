@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://weapons/rifle/rifle.gd" id="1_6yese"]
 [ext_resource type="Resource" uid="uid://juwws4rfwgk" path="res://weapons/rifle/faction_player.tres" id="2_fy5rm"]
-[ext_resource type="Texture2D" uid="uid://djr1kl7h5wa2u" path="res://asset_packs/kenney_1-bit-pack/Tilesheet/colored_packed.png" id="3_w1l1f"]
-[ext_resource type="AudioStream" uid="uid://dsalan3pfwq0l" path="res://weapons/rifle/shoot.wav" id="4_hyy87"]
+[ext_resource type="Texture2D" uid="uid://bibo8dq3jrqku" path="res://asset_packs/kenney_1-bit-pack/Tilesheet/colored_packed.png" id="3_w1l1f"]
+[ext_resource type="AudioStream" uid="uid://bq47yxx5gcycn" path="res://weapons/rifle/shoot.wav" id="4_hyy87"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6juic"]
-radius = 256.0
+radius = 96.0
 
 [node name="Rifle" type="Area2D"]
 collision_layer = 0
@@ -19,7 +19,6 @@ secondary_faction = ExtResource("2_fy5rm")
 faction = ExtResource("2_fy5rm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_6juic")
 
 [node name="WeaponPivot" type="Marker2D" parent="."]

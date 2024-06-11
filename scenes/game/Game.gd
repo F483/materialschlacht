@@ -42,8 +42,10 @@ const ENEMY_RESOURCES = {
 var selected_entities: Dictionary = {}
 
 func _ready():
-    select_player_entities(%PlayerUnits.get_children())
+    self._select_player_entities(%PlayerUnits.get_children())
     %MusicPlayer.play()
+    %SelectionBox.selected_entities.connect(self._on_selected_entities)
+    %SelectionBox.selected_position.connect(self._on_selected_position)
     # FIXME set camera limits based on map size
     
 func spawn_enemy(spawn_position: Vector2 = Vector2.ZERO):
@@ -61,9 +63,10 @@ func spawn_enemy(spawn_position: Vector2 = Vector2.ZERO):
         enemy.global_position = %PathFollow2D.global_position
     %Enemies.add_child(enemy)
 
-func check_game_over():
+func _check_game_over():
     if not %PlayerUnits.get_children():
-        game_over()
+        %GameOverScreen.visible = true
+        get_tree().paused = true
         
 func _physics_process(_delta):
     if input_mode == INPUT_MODE.DRAG_SELECT:
@@ -73,11 +76,7 @@ func _physics_process(_delta):
             var movement = entity.get_node("Movement")
             move_state.target = get_global_mouse_position()
             movement.target = get_global_mouse_position()
-    check_game_over()
-
-func game_over():
-    %GameOverScreen.visible = true
-    get_tree().paused = true
+    self._check_game_over()
 
 func unselect(entity):
     var object_id = entity.get_instance_id()
@@ -96,8 +95,8 @@ func clear_selection():
         selection.set_selected_off()
     selected_entities.clear()
 
-func select_player_entities(player_entities):
-    clear_selection()
+func _select_player_entities(player_entities):
+    self.clear_selection()
     for entity in player_entities:
         var selection = entity.get_node("Selection")
         selection.set_selected_on()
@@ -105,13 +104,12 @@ func select_player_entities(player_entities):
     
 func _on_selected_entities(input_entities):
     if input_entities["player"]:
-        select_player_entities(input_entities["player"])
+        self._select_player_entities(input_entities["player"])
+        
     elif input_entities["enemy"] and selected_entities:
-        for object_id in selected_entities:
-            var entity = selected_entities[object_id]
-            entity.get_node("StateMachine").change_state(
-                "Attack", {"targets": input_entities["enemy"]}
-            )
+        self._change_state("Attack", {
+            "targets": input_entities["enemy"]
+        })
 
 func _change_state(name, kwargs):
     for object_id in selected_entities:
@@ -135,7 +133,9 @@ func _input(event):
             return
 
         if event.double_click:
-            _change_state("DodgeRoll", {"target": get_global_mouse_position()})
+            self._change_state(
+                "DodgeRoll", {"target": get_global_mouse_position()}
+            )
             return
 
         if (
@@ -144,7 +144,7 @@ func _input(event):
         ):
             # FIXME how to differentiate between draging on mobile!!!
             #       hold over ~same spot for time?
-            _change_state("Secondary", {})
+            self._change_state("Secondary", {})
             return
 
         if (
@@ -159,8 +159,8 @@ func _input(event):
                 var entities = Utils.sort_query_world_entities(selected)
                 
                 if entities["player"]:
-                    select_player_entities(entities["player"])
-                    _change_state("Move", {
+                    self._select_player_entities(entities["player"])
+                    self._change_state("Move", {
                         "target": get_global_mouse_position(),
                         "block_transition": true
                     })
@@ -169,13 +169,15 @@ func _input(event):
                     return
                     
                 elif entities["enemy"] and selected_entities:
-                    # TODO implement attack with current selection
+                    self._change_state("Attack", {
+                        "targets": entities["enemy"]
+                    })
                     return
         
         if (input_mode == INPUT_MODE.DRAG_SELECT):
             %SelectionBox.disabled = false
             input_mode = INPUT_MODE.BOX_SELECT
-            _change_state("Default", {})
+            self._change_state("Default", {})
             return
 
 func _on_selected_position(selected_position):

@@ -99,7 +99,6 @@ script = ExtResource("9_us486")
 [node name="Movement" type="Node2D" parent="."]
 script = ExtResource("10_ug1xc")
 movement_speed = 48.0
-movement_tolerance = 1.0
 
 [connection signal="health_depleted" from="HealthBar" to="." method="destroy"]
 [connection signal="damaged" from="DirectionFlipper/HurtBox" to="HealthBar" method="on_damaged"]
