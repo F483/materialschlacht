@@ -18,7 +18,7 @@ func enter(kwargs):
     %Movement.stuck.connect(on_movement_done)
     %Movement.arrived.connect(on_movement_done)
     %Movement.movement_speed *= factor
-    %AnimationPlayer.play("Walk")
+    %AnimationPlayer.play("Move")
     if self.owner.game.m_dodgeroll_iframes:
         %HurtBox.disabled = true
 

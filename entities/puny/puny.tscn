@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://crnqlbldeou0i" path="res://asset_packs/Puny-Characters/Soldier-Red.png" id="3_h3unn"]
 [ext_resource type="Script" path="res://components/state/StateMachine.gd" id="5_tcrjn"]
 [ext_resource type="Script" path="res://components/state/states/Move.gd" id="6_j23dn"]
-[ext_resource type="Script" path="res://components/state/states/Idle.gd" id="7_3ge8s"]
+[ext_resource type="Script" path="res://components/state/states/Hold.gd" id="7_3ge8s"]
 [ext_resource type="Script" path="res://components/state/states/Secondary.gd" id="8_2sbw3"]
 [ext_resource type="Script" path="res://components/state/states/DodgeRoll.gd" id="9_0jax2"]
 [ext_resource type="Script" path="res://components/state/states/Defend.gd" id="10_fir0m"]
@@ -74,24 +74,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [18, 19, 20]
-}
-
-[sub_resource type="Animation" id="Animation_ownsv"]
-resource_name = "Idle"
-length = 0.4
-loop_mode = 1
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_63nps"]
@@ -166,12 +148,30 @@ tracks/0/keys = {
 "values": [15, 16, 17]
 }
 
+[sub_resource type="Animation" id="Animation_ownsv"]
+resource_name = "Hold"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4y5qv"]
 _data = {
 "Bow": SubResource("Animation_7sree"),
 "Death": SubResource("Animation_m502w"),
+"Hold": SubResource("Animation_ownsv"),
 "Hurt": SubResource("Animation_2wmgl"),
-"Idle": SubResource("Animation_ownsv"),
 "Move": SubResource("Animation_63nps"),
 "Stave": SubResource("Animation_51i5e"),
 "Sword": SubResource("Animation_fmqca"),
@@ -243,14 +243,13 @@ unique_name_in_owner = true
 texture = ExtResource("3_h3unn")
 hframes = 24
 vframes = 8
-frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_4y5qv")
 }
-autoplay = "Idle"
+autoplay = "Hold"
 
 [node name="Weapon" parent="." instance=ExtResource("13_jjgml")]
 unique_name_in_owner = true

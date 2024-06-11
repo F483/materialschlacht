@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://2ak1wb4r1f7g" path="res://maps/TestKenny1Bit.tscn" id="2_34m4d"]
 [ext_resource type="Script" path="res://scenes/game/camera.gd" id="3_id2dg"]
 [ext_resource type="Script" path="res://scenes/game/SelectionBox.gd" id="4_ghd0c"]
-[ext_resource type="PackedScene" uid="uid://c6w63m5cnqer3" path="res://entities/enemies/boar/boar.tscn" id="5_er8gu"]
+[ext_resource type="PackedScene" uid="uid://c6w63m5cnqer3" path="res://entities/enemies/boar/Boar.tscn" id="5_er8gu"]
 [ext_resource type="Script" path="res://scenes/game/PlayerUnits.gd" id="6_caxu3"]
 [ext_resource type="PackedScene" uid="uid://c0cnqs3d0jrf0" path="res://entities/enemies/Aghoy/Aghoy.tscn" id="6_e66sy"]
 [ext_resource type="PackedScene" uid="uid://bg5l5dskd8qgu" path="res://entities/puny/puny.tscn" id="7_vmpsy"]

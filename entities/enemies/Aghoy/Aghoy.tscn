@@ -34,7 +34,7 @@ radius = 6.0
 radius = 4.0
 
 [sub_resource type="Animation" id="Animation_w7d2j"]
-resource_name = "Idle"
+resource_name = "Hold"
 loop_mode = 1
 step = 0.2
 tracks/0/type = "value"
@@ -51,7 +51,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_a42va"]
-resource_name = "Walk"
+resource_name = "Move"
 length = 0.4
 loop_mode = 1
 step = 0.2
@@ -70,8 +70,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xgfcx"]
 _data = {
-"Idle": SubResource("Animation_w7d2j"),
-"Walk": SubResource("Animation_a42va")
+"Hold": SubResource("Animation_w7d2j"),
+"Move": SubResource("Animation_a42va")
 }
 
 [node name="Aghoy" type="CharacterBody2D"]
@@ -89,8 +89,8 @@ offset_right = 6.0
 offset_bottom = -9.0
 theme_override_styles/background = SubResource("StyleBoxFlat_5fjug")
 theme_override_styles/fill = SubResource("StyleBoxFlat_jivgi")
-max_value = 30.0
-value = 30.0
+max_value = 10.0
+value = 10.0
 show_percentage = false
 script = ExtResource("3_mpy66")
 
@@ -101,7 +101,6 @@ position = Vector2(0, -4)
 texture = ExtResource("4_og7xv")
 hframes = 3
 vframes = 4
-frame = 1
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 256
@@ -144,4 +143,4 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_xgfcx")
 }
-autoplay = "Walk"
+autoplay = "Move"

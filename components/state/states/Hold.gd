@@ -1,12 +1,12 @@
 extends State
 
-class_name Idle  # TODO rename to Hold everywhere
+class_name Hold
 
 func enter(_kwargs):
     %Movement.knockback_disabled = true
     %Movement.movement_disabled = true
     %Movement.stop()
-    %AnimationPlayer.play("Idle")
+    %AnimationPlayer.play("Hold")
 
 func process(_delta: float):
     var enemies = %Weapon.find_targetable_enemies()
