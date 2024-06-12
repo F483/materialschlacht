@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bq47yxx5gcycn" path="res://weapons/rifle/shoot.wav" id="4_hyy87"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6juic"]
-radius = 96.0
+radius = 80.0
 
 [node name="Rifle" type="Area2D"]
 collision_layer = 0
@@ -19,6 +19,7 @@ secondary_faction = ExtResource("2_fy5rm")
 faction = ExtResource("2_fy5rm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_6juic")
 
 [node name="WeaponPivot" type="Marker2D" parent="."]

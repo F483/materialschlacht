@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cruh7nl4gnr56"]
+[gd_scene load_steps=10 format=3 uid="uid://cruh7nl4gnr56"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.gd" id="1_h1b5a"]
 [ext_resource type="PackedScene" uid="uid://2ak1wb4r1f7g" path="res://maps/TestKenny1Bit.tscn" id="2_34m4d"]
 [ext_resource type="Script" path="res://scenes/game/camera.gd" id="3_id2dg"]
 [ext_resource type="Script" path="res://scenes/game/SelectionBox.gd" id="4_ghd0c"]
-[ext_resource type="Script" path="res://scenes/game/PlayerUnits.gd" id="6_caxu3"]
+[ext_resource type="PackedScene" uid="uid://c6w63m5cnqer3" path="res://entities/enemies/boar/Boar.tscn" id="5_1hrv2"]
+[ext_resource type="Script" path="res://scenes/game/PlayerEntities.gd" id="6_caxu3"]
 [ext_resource type="PackedScene" uid="uid://c0cnqs3d0jrf0" path="res://entities/neutral/Aghoy/Aghoy.tscn" id="6_e66sy"]
 [ext_resource type="PackedScene" uid="uid://bg5l5dskd8qgu" path="res://entities/puny/puny.tscn" id="7_vmpsy"]
 [ext_resource type="AudioStream" uid="uid://c6u4yobc614t3" path="res://music/Studio Picalquers - Demo - Sunk.mp3" id="8_j8io2"]
@@ -41,21 +42,29 @@ z_index = 666
 script = ExtResource("4_ghd0c")
 collision_mask = 17891601
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="EnemyEntities" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="Aghoy" parent="Enemies" instance=ExtResource("6_e66sy")]
+[node name="Boar" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
+position = Vector2(191, 1250)
+
+[node name="NeutralEntities" type="Node2D" parent="."]
+
+[node name="Aghoy" parent="NeutralEntities" instance=ExtResource("6_e66sy")]
 position = Vector2(271, 1587)
 
-[node name="PlayerUnits" type="Node2D" parent="."]
+[node name="PlayerEntities" type="Node2D" parent="."]
 unique_name_in_owner = true
 y_sort_enabled = true
 script = ExtResource("6_caxu3")
 
-[node name="Puny5" parent="PlayerUnits" instance=ExtResource("7_vmpsy")]
+[node name="Puny5" parent="PlayerEntities" instance=ExtResource("7_vmpsy")]
 position = Vector2(293, 1745)
 
-[node name="HealthBar" parent="PlayerUnits/Puny5" index="9"]
+[node name="Selection" parent="PlayerEntities/Puny5" index="3"]
+outline_color = Color(1, 1, 0, 1)
+
+[node name="HealthBar" parent="PlayerEntities/Puny5" index="9"]
 value = 10.0
 
 [node name="Timer" type="Timer" parent="."]
@@ -81,14 +90,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -46.0
-offset_top = -11.5
-offset_right = 46.0
-offset_bottom = 11.5
+offset_left = -96.0
+offset_top = -30.0
+offset_right = 1169.0
+offset_bottom = 272.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.15, 0.15)
 theme_override_font_sizes/font_size = 221
 text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
@@ -97,4 +109,4 @@ volume_db = -12.0
 
 [connection signal="timeout" from="Timer" to="." method="spawn_enemy"]
 
-[editable path="PlayerUnits/Puny5"]
+[editable path="PlayerEntities/Puny5"]

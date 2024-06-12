@@ -14,7 +14,7 @@ signal arrived
 @export var knockback_disabled: bool = false
 @export var knockback_factor: float = 1.0
 
-@export var line_color: Color = Color(1, 1 ,0 , 1)
+@export var line_color: Color = Color(1, 1 ,0 , 0.5)
 @export var line_width: int = -1
 
 var knockback_vec: Vector2 = Vector2.ZERO

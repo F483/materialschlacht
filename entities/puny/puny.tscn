@@ -234,8 +234,6 @@ script = ExtResource("11_xutug")
 [node name="Selection" type="Node2D" parent="."]
 script = ExtResource("3_1tq0h")
 rect = Rect2(-6, -8, 12, 16)
-fill_color = Color(0.321569, 0.321569, 0, 0.752941)
-outline_width = 1
 draw_box = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -253,7 +251,6 @@ autoplay = "Hold"
 
 [node name="Weapon" parent="." instance=ExtResource("13_jjgml")]
 unique_name_in_owner = true
-position = Vector2(0, 1)
 
 [node name="DeathFX" type="Marker2D" parent="."]
 script = ExtResource("14_rtks7")

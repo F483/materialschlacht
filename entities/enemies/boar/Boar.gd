@@ -5,6 +5,8 @@ const TEXTURES = {
     "Boar2": preload("res://asset_packs/PUNY_MONSTERS_v1/Boar2.png"),
 }
 
+@export var vision_range: float = 96
+
 func _ready():
     super()
     var keys = TEXTURES.keys()
@@ -19,6 +21,10 @@ func _physics_process(_delta):
     var children = Utils.get_2dchildren(player_units)
     if children.size() > 0:
         var closest = Utils.find_closest(self, children)
-        %Movement.target =  closest.global_position
-    else:
-        %Movement.target = Vector2.ZERO
+        var dist = self.global_position.distance_to(closest.global_position)
+        if dist <= vision_range:
+            %Movement.target =  closest.global_position
+            %AnimationPlayer.play("Move")
+            return
+    %Movement.stop()
+    %AnimationPlayer.play("Hold")

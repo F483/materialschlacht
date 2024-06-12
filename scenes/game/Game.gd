@@ -42,7 +42,7 @@ const ENEMY_RESOURCES = {
 var selected_entities: Dictionary = {}
 
 func _ready():
-    self._select_player_entities(%PlayerUnits.get_children())
+    self._select_player_entities(%PlayerEntities.get_children())
     %MusicPlayer.play()
     %SelectionBox.selected_entities.connect(self._on_selected_entities)
     %SelectionBox.selected_position.connect(self._on_selected_position)
@@ -61,10 +61,10 @@ func spawn_enemy(spawn_position: Vector2 = Vector2.ZERO):
     else:
         %PathFollow2D.progress_ratio = randf()
         enemy.global_position = %PathFollow2D.global_position
-    %Enemies.add_child(enemy)
+    %EnemyEntities.add_child(enemy)
 
 func _check_game_over():
-    if not %PlayerUnits.get_children():
+    if not %PlayerEntities.get_children():
         %GameOverScreen.visible = true
         get_tree().paused = true
         

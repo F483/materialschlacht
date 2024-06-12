@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Entity
 
 @onready var game = get_node("/root/Game")
-@onready var player_units = get_node("/root/Game/PlayerUnits")
+@onready var player_units = get_node("/root/Game/PlayerEntities")
 
 signal faction_updated(value: Faction)
 
