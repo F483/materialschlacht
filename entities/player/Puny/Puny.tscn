@@ -1,7 +1,7 @@
 [gd_scene load_steps=31 format=3 uid="uid://bg5l5dskd8qgu"]
 
-[ext_resource type="Script" path="res://entities/puny/puny.gd" id="1_heyg1"]
-[ext_resource type="Resource" uid="uid://cd43v5yma5yd" path="res://entities/puny/faction_player.tres" id="2_5o02w"]
+[ext_resource type="Script" path="res://entities/player/Puny/Puny.gd" id="1_heyg1"]
+[ext_resource type="Resource" uid="uid://cd43v5yma5yd" path="res://entities/player/Puny/faction.tres" id="2_5o02w"]
 [ext_resource type="Script" path="res://components/Selection.gd" id="3_1tq0h"]
 [ext_resource type="Texture2D" uid="uid://crnqlbldeou0i" path="res://asset_packs/Puny-Characters/Soldier-Red.png" id="3_h3unn"]
 [ext_resource type="Script" path="res://components/state/StateMachine.gd" id="5_tcrjn"]

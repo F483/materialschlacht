@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c6w63m5cnqer3" path="res://entities/enemies/boar/Boar.tscn" id="5_1hrv2"]
 [ext_resource type="Script" path="res://scenes/game/PlayerEntities.gd" id="6_caxu3"]
 [ext_resource type="PackedScene" uid="uid://c0cnqs3d0jrf0" path="res://entities/neutral/Aghoy/Aghoy.tscn" id="6_e66sy"]
-[ext_resource type="PackedScene" uid="uid://bg5l5dskd8qgu" path="res://entities/puny/puny.tscn" id="7_vmpsy"]
+[ext_resource type="PackedScene" uid="uid://bg5l5dskd8qgu" path="res://entities/player/Puny/Puny.tscn" id="7_vmpsy"]
 [ext_resource type="AudioStream" uid="uid://c6u4yobc614t3" path="res://music/Studio Picalquers - Demo - Sunk.mp3" id="8_j8io2"]
 
 [node name="Game" type="Node2D"]
