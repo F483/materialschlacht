@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c0cnqs3d0jrf0"]
+[gd_scene load_steps=17 format=3 uid="uid://c0cnqs3d0jrf0"]
 
 [ext_resource type="Script" path="res://entities/neutral/Aghoy/Aghoy.gd" id="1_sbwc6"]
 [ext_resource type="Resource" uid="uid://btmdjbd6f1yvw" path="res://entities/neutral/Aghoy/faction.tres" id="2_5hbix"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://chks4dajgl1uv" path="res://asset_packs/PUNY_MONSTERS_v1/Aghoy.png" id="4_og7xv"]
 [ext_resource type="Script" path="res://components/HitBox.gd" id="5_tgpxi"]
 [ext_resource type="Script" path="res://components/HurtBox.gd" id="6_4sj13"]
-[ext_resource type="Script" path="res://components/Spawner.gd" id="7_skx08"]
 [ext_resource type="Script" path="res://components/Movement.gd" id="8_6nc7y"]
 [ext_resource type="Script" path="res://components/DirectionSelector.gd" id="9_j4g6b"]
 
@@ -94,14 +93,6 @@ value = 10.0
 show_percentage = false
 script = ExtResource("3_mpy66")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-texture_filter = 1
-position = Vector2(0, -4)
-texture = ExtResource("4_og7xv")
-hframes = 3
-vframes = 4
-
 [node name="HitBox" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 256
@@ -126,9 +117,14 @@ debug_color = Color(0.905882, 0.215686, 0.537255, 0.419608)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_e7q00")
 
-[node name="DeathFX" type="Marker2D" parent="."]
-script = ExtResource("7_skx08")
-extra_scale = 0.25
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(0, -5)
+texture = ExtResource("4_og7xv")
+hframes = 3
+vframes = 4
+frame = 2
 
 [node name="Movement" type="Node2D" parent="."]
 unique_name_in_owner = true

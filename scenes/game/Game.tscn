@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cruh7nl4gnr56"]
+[gd_scene load_steps=9 format=3 uid="uid://cruh7nl4gnr56"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.gd" id="1_h1b5a"]
 [ext_resource type="PackedScene" uid="uid://2ak1wb4r1f7g" path="res://maps/TestKenny1Bit.tscn" id="2_34m4d"]
 [ext_resource type="Script" path="res://scenes/game/camera.gd" id="3_id2dg"]
 [ext_resource type="Script" path="res://scenes/game/SelectionBox.gd" id="4_ghd0c"]
-[ext_resource type="PackedScene" uid="uid://c6w63m5cnqer3" path="res://entities/enemies/boar/Boar.tscn" id="5_er8gu"]
 [ext_resource type="Script" path="res://scenes/game/PlayerUnits.gd" id="6_caxu3"]
 [ext_resource type="PackedScene" uid="uid://c0cnqs3d0jrf0" path="res://entities/neutral/Aghoy/Aghoy.tscn" id="6_e66sy"]
 [ext_resource type="PackedScene" uid="uid://bg5l5dskd8qgu" path="res://entities/puny/puny.tscn" id="7_vmpsy"]
@@ -45,118 +44,19 @@ collision_mask = 17891601
 [node name="Enemies" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="Boar11" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(512, 3620)
-
-[node name="Boar" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(468, 1808)
-
-[node name="Boar2" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(235, 1135)
-
-[node name="Boar3" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(362, 1129)
-
-[node name="Boar4" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(88, 1254)
-
-[node name="Boar5" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(263, 653)
-
-[node name="Boar6" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(444, 873)
-
-[node name="Boar7" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(79, 868)
-
-[node name="Boar8" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(228, 828)
-
-[node name="Boar9" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(372, 704)
-
-[node name="Boar10" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(102, 656)
-
-[node name="Boar12" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(362, 318)
-
-[node name="Boar13" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(260, 226)
-
-[node name="Boar14" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(140, 395)
-
-[node name="Boar15" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(108, 681)
-
-[node name="Boar16" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(308, 938)
-
-[node name="Boar17" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(139, 1151)
-
-[node name="Boar18" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(306, 1473)
-
-[node name="Boar19" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(258, 1320)
-
-[node name="Boar20" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(115, 1443)
-
-[node name="Boar21" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(405, 1418)
-
-[node name="Boar22" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(129, 1723)
-
-[node name="Boar23" parent="Enemies" instance=ExtResource("5_er8gu")]
-position = Vector2(149, 1621)
-
 [node name="Aghoy" parent="Enemies" instance=ExtResource("6_e66sy")]
 position = Vector2(271, 1587)
-
-[node name="Aghoy2" parent="Enemies" instance=ExtResource("6_e66sy")]
-position = Vector2(227, 1437)
-
-[node name="Aghoy3" parent="Enemies" instance=ExtResource("6_e66sy")]
-position = Vector2(57, 1633)
-
-[node name="Aghoy4" parent="Enemies" instance=ExtResource("6_e66sy")]
-position = Vector2(428, 1598)
-
-[node name="Aghoy5" parent="Enemies" instance=ExtResource("6_e66sy")]
-position = Vector2(357, 1370)
-
-[node name="Aghoy6" parent="Enemies" instance=ExtResource("6_e66sy")]
-position = Vector2(138, 1345)
 
 [node name="PlayerUnits" type="Node2D" parent="."]
 unique_name_in_owner = true
 y_sort_enabled = true
 script = ExtResource("6_caxu3")
 
-[node name="Puny" parent="PlayerUnits" instance=ExtResource("7_vmpsy")]
-position = Vector2(388, 1741)
-
-[node name="Puny2" parent="PlayerUnits" instance=ExtResource("7_vmpsy")]
-position = Vector2(379, 1849)
-
-[node name="Puny3" parent="PlayerUnits" instance=ExtResource("7_vmpsy")]
-position = Vector2(252, 1913)
-
-[node name="Puny4" parent="PlayerUnits" instance=ExtResource("7_vmpsy")]
-position = Vector2(250, 1759)
-
 [node name="Puny5" parent="PlayerUnits" instance=ExtResource("7_vmpsy")]
 position = Vector2(293, 1745)
 
 [node name="HealthBar" parent="PlayerUnits/Puny5" index="9"]
 value = 10.0
-
-[node name="Puny6" parent="PlayerUnits" instance=ExtResource("7_vmpsy")]
-position = Vector2(311, 1897)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0

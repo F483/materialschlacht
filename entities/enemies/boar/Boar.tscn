@@ -106,7 +106,8 @@ vframes = 4
 collision_layer = 256
 collision_mask = 0
 script = ExtResource("5_u5lf8")
-dammage = 666.0
+dammage = 33.0
+knockback_time = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CircleShape2D_avdf0")
