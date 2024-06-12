@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cruh7nl4gnr56"]
+[gd_scene load_steps=11 format=3 uid="uid://cruh7nl4gnr56"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.gd" id="1_h1b5a"]
 [ext_resource type="PackedScene" uid="uid://2ak1wb4r1f7g" path="res://maps/TestKenny1Bit.tscn" id="2_34m4d"]
 [ext_resource type="Script" path="res://scenes/game/camera.gd" id="3_id2dg"]
 [ext_resource type="Script" path="res://scenes/game/SelectionBox.gd" id="4_ghd0c"]
 [ext_resource type="PackedScene" uid="uid://c6w63m5cnqer3" path="res://entities/enemies/boar/Boar.tscn" id="5_1hrv2"]
+[ext_resource type="PackedScene" uid="uid://cegild4dp6ou7" path="res://entities/enemies/Santelmo/Santelmo.tscn" id="6_1enpl"]
 [ext_resource type="Script" path="res://scenes/game/PlayerEntities.gd" id="6_caxu3"]
 [ext_resource type="PackedScene" uid="uid://c0cnqs3d0jrf0" path="res://entities/neutral/Aghoy/Aghoy.tscn" id="6_e66sy"]
 [ext_resource type="PackedScene" uid="uid://bg5l5dskd8qgu" path="res://entities/player/Puny/Puny.tscn" id="7_vmpsy"]
@@ -47,6 +48,9 @@ unique_name_in_owner = true
 
 [node name="Boar" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
 position = Vector2(191, 1250)
+
+[node name="Santelmo" parent="EnemyEntities" instance=ExtResource("6_1enpl")]
+position = Vector2(154, 1648)
 
 [node name="NeutralEntities" type="Node2D" parent="."]
 
