@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dres4qlld7l7n"]
+[gd_scene load_steps=21 format=3 uid="uid://dres4qlld7l7n"]
 
 [ext_resource type="Script" path="res://entities/enemies/Tiyanak/Tiyanak.gd" id="1_xa2pa"]
 [ext_resource type="Resource" uid="uid://bbwxnwpigy2g8" path="res://entities/enemies/Tiyanak/faction.tres" id="2_4g204"]
@@ -8,6 +8,11 @@
 [ext_resource type="Script" path="res://components/Spawner.gd" id="7_2gwuq"]
 [ext_resource type="Script" path="res://components/Movement.gd" id="8_g0la5"]
 [ext_resource type="Script" path="res://components/DirectionSelector.gd" id="9_5qqkx"]
+[ext_resource type="Script" path="res://components/state/StateMachine.gd" id="9_sroqo"]
+[ext_resource type="Script" path="res://components/state/states/Hold.gd" id="10_4isbd"]
+[ext_resource type="Script" path="res://components/state/states/Defend.gd" id="11_hfrut"]
+[ext_resource type="PackedScene" uid="uid://dw6qjtvj7g6a" path="res://weapons/rifle/rifle.tscn" id="12_jwah5"]
+[ext_resource type="Resource" uid="uid://c03v2s6p8mfse" path="res://weapons/rifle/faction_enemy.tres" id="13_8a7nx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fjug"]
 bg_color = Color(0.152941, 0.168627, 0.188235, 1)
@@ -133,3 +138,18 @@ libraries = {
 "": SubResource("AnimationLibrary_xgfcx")
 }
 autoplay = "Move"
+
+[node name="StateMachine" type="Node2D" parent="."]
+script = ExtResource("9_sroqo")
+
+[node name="Default" type="Node2D" parent="StateMachine"]
+script = ExtResource("10_4isbd")
+
+[node name="Defend" type="Node2D" parent="StateMachine"]
+script = ExtResource("11_hfrut")
+
+[node name="Weapon" parent="." instance=ExtResource("12_jwah5")]
+unique_name_in_owner = true
+primary_faction = ExtResource("13_8a7nx")
+secondary_faction = ExtResource("13_8a7nx")
+faction = ExtResource("13_8a7nx")
