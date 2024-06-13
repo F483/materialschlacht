@@ -1,14 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://c6w63m5cnqer3"]
+[gd_scene load_steps=16 format=3 uid="uid://dres4qlld7l7n"]
 
-[ext_resource type="Script" path="res://entities/enemies/boar/Boar.gd" id="1_qii8b"]
-[ext_resource type="Resource" uid="uid://njtb40pi75ka" path="res://entities/enemies/boar/faction.tres" id="2_03mmm"]
-[ext_resource type="Script" path="res://components/HealthBar.gd" id="3_0x4tm"]
-[ext_resource type="Texture2D" uid="uid://dovy0d8mfqpp8" path="res://asset_packs/PUNY_MONSTERS_v1/Boar2.png" id="4_04lc4"]
-[ext_resource type="Script" path="res://components/HitBox.gd" id="5_u5lf8"]
-[ext_resource type="Script" path="res://components/HurtBox.gd" id="6_trv1a"]
-[ext_resource type="Script" path="res://components/Spawner.gd" id="7_tmduy"]
-[ext_resource type="Script" path="res://components/Movement.gd" id="8_ystcp"]
-[ext_resource type="Script" path="res://components/DirectionSelector.gd" id="9_8m5el"]
+[ext_resource type="Script" path="res://entities/enemies/Tiyanak/Tiyanak.gd" id="1_xa2pa"]
+[ext_resource type="Resource" uid="uid://bbwxnwpigy2g8" path="res://entities/enemies/Tiyanak/faction.tres" id="2_4g204"]
+[ext_resource type="Script" path="res://components/HealthBar.gd" id="3_gscxp"]
+[ext_resource type="Texture2D" uid="uid://dpp63i6wdrn2e" path="res://asset_packs/PUNY_MONSTERS_v1/Tiyanak.png" id="4_tmore"]
+[ext_resource type="Script" path="res://components/HurtBox.gd" id="6_heofv"]
+[ext_resource type="Script" path="res://components/Spawner.gd" id="7_2gwuq"]
+[ext_resource type="Script" path="res://components/Movement.gd" id="8_g0la5"]
+[ext_resource type="Script" path="res://components/DirectionSelector.gd" id="9_5qqkx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fjug"]
 bg_color = Color(0.152941, 0.168627, 0.188235, 1)
@@ -23,9 +22,6 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_avdf0"]
-radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1cqyx"]
 radius = 6.0
@@ -74,12 +70,12 @@ _data = {
 "Move": SubResource("Animation_a42va")
 }
 
-[node name="Boar" type="CharacterBody2D"]
+[node name="Tiyanak" type="CharacterBody2D"]
 collision_layer = 129
 collision_mask = 17
 motion_mode = 1
-script = ExtResource("1_qii8b")
-faction = ExtResource("2_03mmm")
+script = ExtResource("1_xa2pa")
+faction = ExtResource("2_4g204")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
@@ -92,51 +88,42 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_jivgi")
 max_value = 30.0
 value = 30.0
 show_percentage = false
-script = ExtResource("3_0x4tm")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-texture_filter = 1
-position = Vector2(0, -4)
-texture = ExtResource("4_04lc4")
-hframes = 3
-vframes = 4
-frame = 1
-
-[node name="HitBox" type="Area2D" parent="."]
-collision_layer = 256
-collision_mask = 0
-script = ExtResource("5_u5lf8")
-dammage = 33.0
-knockback_time = 0.1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("CircleShape2D_avdf0")
+script = ExtResource("3_gscxp")
 
 [node name="HurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 512
 collision_mask = 32
-script = ExtResource("6_trv1a")
+script = ExtResource("6_heofv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_1cqyx")
 debug_color = Color(0.905882, 0.215686, 0.537255, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_e7q00")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(0, -4)
+texture = ExtResource("4_tmore")
+hframes = 3
+vframes = 4
+frame = 2
+
 [node name="DeathFX" type="Marker2D" parent="."]
-script = ExtResource("7_tmduy")
+script = ExtResource("7_2gwuq")
 extra_scale = 0.25
 
 [node name="Movement" type="Node2D" parent="."]
 unique_name_in_owner = true
-script = ExtResource("8_ystcp")
+script = ExtResource("8_g0la5")
 movement_speed = 32.0
 
 [node name="DirectionSelector" type="Node2D" parent="."]
-script = ExtResource("9_8m5el")
+script = ExtResource("9_5qqkx")
 frames = 4
 lookup = Array[int]([2, 0, 1, 3])
 

@@ -1,12 +1,9 @@
 extends Entity
 
-const TEXTURE = preload("res://asset_packs/PUNY_MONSTERS_v1/Santelmo.png")
-
 @export var vision_range: float = 64
 
 func _ready():
     super()
-    %Sprite2D.texture = TEXTURE
     %HealthBar.health_depleted.connect(self.destroy)
     %HurtBox.damaged.connect(%HealthBar.on_damaged)
     %HurtBox.damaged.connect(%Movement.on_damaged)

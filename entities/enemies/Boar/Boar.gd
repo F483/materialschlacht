@@ -1,17 +1,9 @@
 extends Entity
 
-const TEXTURES = {
-    "Boar": preload("res://asset_packs/PUNY_MONSTERS_v1/Boar.png"),
-    "Boar2": preload("res://asset_packs/PUNY_MONSTERS_v1/Boar2.png"),
-}
-
 @export var vision_range: float = 96
 
 func _ready():
     super()
-    var keys = TEXTURES.keys()
-    var index = randi() % keys.size()
-    %Sprite2D.texture = TEXTURES[keys[index]]
     %HealthBar.health_depleted.connect(self.destroy)
     %HurtBox.damaged.connect(%HealthBar.on_damaged)
     %HurtBox.damaged.connect(%Movement.on_damaged)

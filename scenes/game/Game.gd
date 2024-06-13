@@ -36,7 +36,8 @@ enum INPUT_MODE {
 # TODO add c_noclip
 
 const ENEMY_RESOURCES = {
-    "Boar": preload("res://entities/enemies/boar/Boar.tscn"),
+    "Boar": preload("res://entities/enemies/Boar/Boar.tscn"),
+    "Santelmo": preload("res://entities/enemies/Santelmo/Santelmo.tscn"),
 }
 
 var selected_entities: Dictionary = {}
