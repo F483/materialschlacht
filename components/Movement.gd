@@ -13,6 +13,7 @@ signal arrived
 
 @export var knockback_disabled: bool = false
 @export var knockback_factor: float = 1.0
+@export var knockback_stacked: bool = false
 
 @export var line_color: Color = Color(1, 1 ,0 , 0.5)
 @export var line_width: int = -1
@@ -30,7 +31,7 @@ func on_damaged(src_hitbox: HitBox):
         var hit_knockback_vec = (
             direction * src_hitbox.knockback_speed * knockback_factor
         )
-        if knockback_ttl > 0.0: # stack knockback on multiple quick hits
+        if knockback_ttl > 0.0 and knockback_stacked:
             knockback_vec += hit_knockback_vec
             knockback_ttl += src_hitbox.knockback_time
         else:

@@ -250,9 +250,6 @@ libraries = {
 }
 autoplay = "Hold"
 
-[node name="Weapon" parent="." instance=ExtResource("13_jjgml")]
-unique_name_in_owner = true
-
 [node name="DeathFX" type="Marker2D" parent="."]
 script = ExtResource("14_rtks7")
 extra_scale = 0.25
@@ -283,3 +280,7 @@ script = ExtResource("16_euk7m")
 script = ExtResource("17_bq38f")
 offset = 2
 counterclockwise = true
+
+[node name="Weapon" parent="." instance=ExtResource("13_jjgml")]
+unique_name_in_owner = true
+position = Vector2(-1, 3)

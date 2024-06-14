@@ -95,6 +95,15 @@ value = 30.0
 show_percentage = false
 script = ExtResource("3_gscxp")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(0, -4)
+texture = ExtResource("4_tmore")
+hframes = 3
+vframes = 4
+frame = 2
+
 [node name="HurtBox" type="Area2D" parent="."]
 unique_name_in_owner = true
 collision_layer = 512
@@ -108,15 +117,6 @@ debug_color = Color(0.905882, 0.215686, 0.537255, 0.419608)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_e7q00")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-texture_filter = 1
-position = Vector2(0, -4)
-texture = ExtResource("4_tmore")
-hframes = 3
-vframes = 4
-frame = 2
 
 [node name="DeathFX" type="Marker2D" parent="."]
 script = ExtResource("7_2gwuq")
@@ -150,6 +150,6 @@ script = ExtResource("11_hfrut")
 
 [node name="Weapon" parent="." instance=ExtResource("12_jwah5")]
 unique_name_in_owner = true
-primary_faction = ExtResource("13_8a7nx")
-secondary_faction = ExtResource("13_8a7nx")
+accuracy = 1.0
+cycle_time = 1.0
 faction = ExtResource("13_8a7nx")

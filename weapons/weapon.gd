@@ -10,9 +10,6 @@ signal fired(bullet: Array[Bullet])
 
 var aiming: bool = false
 
-@export var primary_faction: Faction = null
-@export var secondary_faction: Faction = null
-
 signal faction_updated(value: Faction)
 
 @export var faction: Faction = null:
