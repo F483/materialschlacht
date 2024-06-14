@@ -12,13 +12,6 @@ enum INPUT_MODE {
 }
 @export var input_mode: INPUT_MODE = INPUT_MODE.BOX_SELECT
 
-# TODO add m_cover
-# TODO add m_player_friendly_fire
-# TODO add m_enemy_friendly_fire
-# TODO add m_neutral_friendly_fire
-# TODO add m_jump_down_ledges
-# TODO add m_light_on_heavy
-
 # CHEATS
 # TODO add c_iddqd
 # TODO add c_idkfa
@@ -56,6 +49,9 @@ func spawn_enemy(spawn_position: Vector2 = Vector2.ZERO):
 func _check_game_over():
     if not %PlayerEntities.get_children():
         %GameOverScreen.visible = true
+        get_tree().paused = true
+    if not %EnemyEntities.get_children():
+        %VictoryScreen.visible = true
         get_tree().paused = true
         
 func _physics_process(_delta):
