@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponCfg" load_steps=3 format=3 uid="uid://d4i3ssr1f3stq"]
+
+[ext_resource type="Resource" uid="uid://6rd8pss3apnv" path="res://entities/player/Puny/bullet_physics_cfg.tres" id="1_k1i3x"]
+[ext_resource type="Script" path="res://resources/WeaponCfg.gd" id="1_y0pv5"]
+
+[resource]
+script = ExtResource("1_y0pv5")
+color_primary = Color(0.341176, 0.341176, 1, 1)
+color_secondary = Color(0, 0, 0.658824, 1)
+accuracy = 0.3925
+cycle_time = 0.1
+targeting_layer = 0
+targeting_mask = 83887360
+bullet_speed = 666.666
+bullet_range = 666.666
+bullet_physics_cfg = ExtResource("1_k1i3x")

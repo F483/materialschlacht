@@ -10,27 +10,27 @@ signal fired(bullet: Array[Bullet])
 
 var aiming: bool = false
 
-signal physics_cfg_updated(value: PhysicsCfg)
+signal weapon_cfg_updated(value: WeaponCfg)
 
-@export var physics_cfg: PhysicsCfg = null:
+@export var weapon_cfg: WeaponCfg = null:
     set (value):
-        physics_cfg = value
-        physics_cfg_updated.emit(physics_cfg)
+        weapon_cfg = value
+        weapon_cfg_updated.emit(weapon_cfg)
 
 func _ready():
-    self.physics_cfg_updated.connect(set_physics_cfg)
-    set_physics_cfg(self.physics_cfg)
+    self.weapon_cfg_updated.connect(set_physics_cfg)
+    set_physics_cfg(self.weapon_cfg)
 
-func set_physics_cfg(physics_cfg: PhysicsCfg):
-    collision_layer = physics_cfg.targeting_layer
-    collision_mask = physics_cfg.targeting_mask
+func set_physics_cfg(weapon_cfg: WeaponCfg):
+    collision_layer = weapon_cfg.targeting_layer
+    collision_mask = weapon_cfg.targeting_mask
 
 func trigger():
     if aiming and not safty:
         var bullets = shoot()
         for bullet in bullets:
             bullet.entity_owner = self.owner
-            bullet.physics_cfg = bullet.FACTIONS[physics_cfg.name]
+            bullet.weapon_cfg = self.weapon_cfg
             %ShootingPoint.add_child(bullet)
         fired.emit(bullets)
         
@@ -44,8 +44,8 @@ func find_targetable_enemies() -> Array[Node2D]:
     return Utils.filter_obscured(
         self,
         get_overlapping_bodies(),
-        game.m_highground,
-        game.m_concealment
+        Config.m_highground,
+        Config.m_concealment
     )
     
 func aim_at(target):

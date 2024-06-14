@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://components/HurtBox.gd" id="15_ssow5"]
 [ext_resource type="Script" path="res://components/HealthBar.gd" id="16_euk7m"]
 [ext_resource type="Script" path="res://components/DirectionSelector.gd" id="17_bq38f"]
-[ext_resource type="Resource" uid="uid://juwws4rfwgk" path="res://weapons/rifle/physics_cfg_player.tres" id="18_onqql"]
+[ext_resource type="Resource" uid="uid://d4i3ssr1f3stq" path="res://entities/player/Puny/weapon_cfg.tres" id="18_uvn05"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kp4bo"]
 radius = 4.0
@@ -285,4 +285,4 @@ counterclockwise = true
 [node name="Weapon" parent="." instance=ExtResource("13_jjgml")]
 unique_name_in_owner = true
 position = Vector2(-1, 3)
-physics_cfg = ExtResource("18_onqql")
+weapon_cfg = ExtResource("18_uvn05")

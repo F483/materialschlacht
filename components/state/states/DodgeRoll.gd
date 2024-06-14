@@ -19,7 +19,7 @@ func enter(kwargs):
     %Movement.arrived.connect(on_movement_done)
     %Movement.movement_speed *= factor
     %AnimationPlayer.play("Move")
-    if self.owner.game.m_dodgeroll_iframes:
+    if Config.m_dodgeroll_iframes:
         %HurtBox.disabled = true
 
 func physics_process(delta: float):
@@ -32,7 +32,7 @@ func exit():
     %Movement.stopped.disconnect(on_movement_done)
     %Movement.stuck.disconnect(on_movement_done)
     %Movement.arrived.disconnect(on_movement_done)
-    if self.owner.game.m_dodgeroll_iframes:
+    if Config.m_dodgeroll_iframes:
         %HurtBox.disabled = false
         
 func on_movement_done():

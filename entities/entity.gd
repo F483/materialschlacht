@@ -13,10 +13,10 @@ signal physics_cfg_updated(value: PhysicsCfg)
         physics_cfg_updated.emit(physics_cfg)
 
 func _ready():
-    self.physics_cfg_updated.connect(set_physics_cfg)
-    set_physics_cfg(self.physics_cfg)
+    self.physics_cfg_updated.connect(set_physics_cfg_data)
+    set_physics_cfg_data(self.physics_cfg)
 
-func set_physics_cfg(value: PhysicsCfg):
+func set_physics_cfg_data(value: PhysicsCfg):
     collision_layer = value.object_layer
     collision_mask = value.object_mask
 

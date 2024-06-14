@@ -10,8 +10,6 @@ radius = 80.0
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_6yese")
-accuracy = 0.333
-cycle_time = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

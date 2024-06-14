@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://components/state/states/Hold.gd" id="10_4isbd"]
 [ext_resource type="Script" path="res://components/state/states/Defend.gd" id="11_hfrut"]
 [ext_resource type="PackedScene" uid="uid://dw6qjtvj7g6a" path="res://weapons/rifle/rifle.tscn" id="12_jwah5"]
-[ext_resource type="Resource" uid="uid://c03v2s6p8mfse" path="res://weapons/rifle/physics_cfg_enemy.tres" id="13_rl475"]
+[ext_resource type="Resource" uid="uid://c1qpjy740u635" path="res://entities/enemies/Tiyanak/weapon_cfg.tres" id="13_p0vqo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fjug"]
 bg_color = Color(0.152941, 0.168627, 0.188235, 1)
@@ -150,6 +150,4 @@ script = ExtResource("11_hfrut")
 
 [node name="Weapon" parent="." instance=ExtResource("12_jwah5")]
 unique_name_in_owner = true
-accuracy = 1.0
-cycle_time = 1.0
-physics_cfg = ExtResource("13_rl475")
+weapon_cfg = ExtResource("13_p0vqo")

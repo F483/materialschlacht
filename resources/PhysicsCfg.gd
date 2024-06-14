@@ -15,6 +15,3 @@ class_name PhysicsCfg
 
 @export_flags_2d_physics var hurtbox_layer: int = 0
 @export_flags_2d_physics var hurtbox_mask: int = 0
-
-@export_flags_2d_physics var targeting_layer: int = 0
-@export_flags_2d_physics var targeting_mask: int = 0

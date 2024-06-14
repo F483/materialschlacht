@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponCfg" load_steps=3 format=3 uid="uid://c1qpjy740u635"]
+
+[ext_resource type="Script" path="res://resources/WeaponCfg.gd" id="1_f462v"]
+[ext_resource type="Resource" uid="uid://u2dnk5g4j0pi" path="res://entities/enemies/Tiyanak/bullet_physics_cfg.tres" id="1_qx423"]
+
+[resource]
+script = ExtResource("1_f462v")
+color_primary = Color(1, 0.341176, 0.341176, 1)
+color_secondary = Color(0.658824, 0, 0, 1)
+accuracy = 0.3925
+cycle_time = 0.1
+targeting_layer = 0
+targeting_mask = 327685
+bullet_speed = 666.666
+bullet_range = 666.666
+bullet_physics_cfg = ExtResource("1_qx423")

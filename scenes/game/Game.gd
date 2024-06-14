@@ -6,17 +6,6 @@ class_name Game
 @export var disable_spawn_enemy: bool = true
 # TODO add setting_speed
 
-# MECHANICS
-
-## Mechanic - Highground: Bullets will hit ledges when shot upward.
-@export var m_highground: bool = true
-
-## Mechanic - Concealment: Smoke prevents vision, disabeling automatic targeting.
-@export var m_concealment: bool = true
-
-## Mechanic - Dodge Roll iframes: Units invulnerable during dodge roll.
-@export var m_dodgeroll_iframes: bool = true
-
 enum INPUT_MODE { 
     BOX_SELECT, 
     DRAG_SELECT  # FIXME factor out drag select into its own file
