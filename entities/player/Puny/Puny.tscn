@@ -1,7 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://bg5l5dskd8qgu"]
+[gd_scene load_steps=32 format=3 uid="uid://bg5l5dskd8qgu"]
 
 [ext_resource type="Script" path="res://entities/player/Puny/Puny.gd" id="1_heyg1"]
-[ext_resource type="Resource" uid="uid://cd43v5yma5yd" path="res://entities/player/Puny/faction.tres" id="2_5o02w"]
+[ext_resource type="Resource" uid="uid://cd43v5yma5yd" path="res://entities/player/Puny/physics_cfg.tres" id="2_ecoxi"]
 [ext_resource type="Script" path="res://components/Selection.gd" id="3_1tq0h"]
 [ext_resource type="Texture2D" uid="uid://crnqlbldeou0i" path="res://asset_packs/Puny-Characters/Soldier-Red.png" id="3_h3unn"]
 [ext_resource type="Script" path="res://components/state/StateMachine.gd" id="5_tcrjn"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://components/HurtBox.gd" id="15_ssow5"]
 [ext_resource type="Script" path="res://components/HealthBar.gd" id="16_euk7m"]
 [ext_resource type="Script" path="res://components/DirectionSelector.gd" id="17_bq38f"]
+[ext_resource type="Resource" uid="uid://juwws4rfwgk" path="res://weapons/rifle/physics_cfg_player.tres" id="18_onqql"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kp4bo"]
 radius = 4.0
@@ -199,7 +200,7 @@ corner_radius_bottom_left = 8
 [node name="Puny" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_heyg1")
-faction = ExtResource("2_5o02w")
+physics_cfg = ExtResource("2_ecoxi")
 
 [node name="Movement" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -284,3 +285,4 @@ counterclockwise = true
 [node name="Weapon" parent="." instance=ExtResource("13_jjgml")]
 unique_name_in_owner = true
 position = Vector2(-1, 3)
+physics_cfg = ExtResource("18_onqql")

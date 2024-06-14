@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PhysicsCfg" load_steps=2 format=3 uid="uid://cd43v5yma5yd"]
+
+[ext_resource type="Script" path="res://resources/PhysicsCfg.gd" id="1_8boum"]
+
+[resource]
+script = ExtResource("1_8boum")
+name = "Player"
+color_primary = Color(0.341176, 0.341176, 1, 1)
+color_secondary = Color(0, 0, 0.658824, 1)
+object_layer = 1
+object_mask = 12561
+hitbox_layer = 0
+hitbox_mask = 0
+hurtbox_layer = 4
+hurtbox_mask = 544

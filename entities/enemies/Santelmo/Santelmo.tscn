@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://cegild4dp6ou7"]
 
 [ext_resource type="Script" path="res://entities/enemies/Santelmo/Santelmo.gd" id="1_htvjm"]
-[ext_resource type="Resource" uid="uid://dvmqnl7duotek" path="res://entities/enemies/Santelmo/faction.tres" id="2_vo8mj"]
+[ext_resource type="Resource" uid="uid://dvmqnl7duotek" path="res://entities/enemies/Santelmo/physics_cfg.tres" id="2_uyxvp"]
 [ext_resource type="Script" path="res://components/HealthBar.gd" id="3_cs3e4"]
 [ext_resource type="Script" path="res://components/HitBox.gd" id="4_pxl7k"]
 [ext_resource type="Script" path="res://components/HurtBox.gd" id="5_hugch"]
@@ -80,7 +80,7 @@ collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_htvjm")
 vision_range = 128.0
-faction = ExtResource("2_vo8mj")
+physics_cfg = ExtResource("2_uyxvp")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true

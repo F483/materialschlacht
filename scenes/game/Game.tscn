@@ -60,7 +60,7 @@ position = Vector2(293, 1745)
 [node name="Selection" parent="PlayerEntities/Puny5" index="3"]
 outline_color = Color(1, 1, 0, 1)
 
-[node name="HealthBar" parent="PlayerEntities/Puny5" index="9"]
+[node name="HealthBar" parent="PlayerEntities/Puny5" index="8"]
 value = 10.0
 
 [node name="Timer" type="Timer" parent="."]

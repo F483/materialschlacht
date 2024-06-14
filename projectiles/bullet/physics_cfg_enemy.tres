@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PhysicsCfg" load_steps=2 format=3 uid="uid://cin5lectlac1y"]
+
+[ext_resource type="Script" path="res://resources/PhysicsCfg.gd" id="1_d2phv"]
+
+[resource]
+script = ExtResource("1_d2phv")
+name = "Enemy"
+color_primary = Color(1, 0.341176, 0.341176, 1)
+color_secondary = Color(0.658824, 0, 0, 1)
+object_layer = 16777472
+object_mask = 17920273
+hitbox_layer = 33554944
+hitbox_mask = 4456516
+hurtbox_layer = 0
+hurtbox_mask = 0

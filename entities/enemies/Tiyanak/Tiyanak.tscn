@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://dres4qlld7l7n"]
 
 [ext_resource type="Script" path="res://entities/enemies/Tiyanak/Tiyanak.gd" id="1_xa2pa"]
-[ext_resource type="Resource" uid="uid://bbwxnwpigy2g8" path="res://entities/enemies/Tiyanak/faction.tres" id="2_4g204"]
+[ext_resource type="Resource" uid="uid://bbwxnwpigy2g8" path="res://entities/enemies/Tiyanak/physics_cfg.tres" id="2_hh063"]
 [ext_resource type="Script" path="res://components/HealthBar.gd" id="3_gscxp"]
 [ext_resource type="Texture2D" uid="uid://dpp63i6wdrn2e" path="res://asset_packs/PUNY_MONSTERS_v1/Tiyanak.png" id="4_tmore"]
 [ext_resource type="Script" path="res://components/HurtBox.gd" id="6_heofv"]
@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://components/state/states/Hold.gd" id="10_4isbd"]
 [ext_resource type="Script" path="res://components/state/states/Defend.gd" id="11_hfrut"]
 [ext_resource type="PackedScene" uid="uid://dw6qjtvj7g6a" path="res://weapons/rifle/rifle.tscn" id="12_jwah5"]
-[ext_resource type="Resource" uid="uid://c03v2s6p8mfse" path="res://weapons/rifle/faction_enemy.tres" id="13_8a7nx"]
+[ext_resource type="Resource" uid="uid://c03v2s6p8mfse" path="res://weapons/rifle/physics_cfg_enemy.tres" id="13_rl475"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fjug"]
 bg_color = Color(0.152941, 0.168627, 0.188235, 1)
@@ -80,7 +80,7 @@ collision_layer = 129
 collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_xa2pa")
-faction = ExtResource("2_4g204")
+physics_cfg = ExtResource("2_hh063")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
@@ -152,4 +152,4 @@ script = ExtResource("11_hfrut")
 unique_name_in_owner = true
 accuracy = 1.0
 cycle_time = 1.0
-faction = ExtResource("13_8a7nx")
+physics_cfg = ExtResource("13_rl475")

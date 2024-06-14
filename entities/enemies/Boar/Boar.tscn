@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://c6w63m5cnqer3"]
 
 [ext_resource type="Script" path="res://entities/enemies/Boar/Boar.gd" id="1_4r1kp"]
-[ext_resource type="Resource" uid="uid://njtb40pi75ka" path="res://entities/enemies/Boar/faction.tres" id="2_yb32f"]
+[ext_resource type="Resource" uid="uid://njtb40pi75ka" path="res://entities/enemies/Boar/physics_cfg.tres" id="2_lwi22"]
 [ext_resource type="Script" path="res://components/HealthBar.gd" id="3_44grd"]
 [ext_resource type="Texture2D" uid="uid://dovy0d8mfqpp8" path="res://asset_packs/PUNY_MONSTERS_v1/Boar2.png" id="4_tg2a3"]
 [ext_resource type="Script" path="res://components/HitBox.gd" id="5_i413d"]
@@ -79,7 +79,7 @@ collision_layer = 129
 collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_4r1kp")
-faction = ExtResource("2_yb32f")
+physics_cfg = ExtResource("2_lwi22")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true

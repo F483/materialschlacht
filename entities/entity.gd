@@ -5,18 +5,18 @@ class_name Entity
 @onready var game = get_node("/root/Game")
 @onready var player_units = get_node("/root/Game/PlayerEntities")
 
-signal faction_updated(value: Faction)
+signal physics_cfg_updated(value: PhysicsCfg)
 
-@export var faction: Faction = null:
+@export var physics_cfg: PhysicsCfg = null:
     set (value):
-        faction = value
-        faction_updated.emit(faction)
+        physics_cfg = value
+        physics_cfg_updated.emit(physics_cfg)
 
 func _ready():
-    self.faction_updated.connect(set_faction_data)
-    set_faction_data(self.faction)
+    self.physics_cfg_updated.connect(set_physics_cfg)
+    set_physics_cfg(self.physics_cfg)
 
-func set_faction_data(value: Faction):
+func set_physics_cfg(value: PhysicsCfg):
     collision_layer = value.object_layer
     collision_mask = value.object_mask
 

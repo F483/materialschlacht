@@ -10,13 +10,13 @@ class_name HitBox
 signal damaged(dest_hurtbox: HurtBox)
 
 func _ready():
-    self.owner.faction_updated.connect(set_faction_data)
+    self.owner.physics_cfg_updated.connect(set_physics_cfg)
     self.area_entered.connect(_on_area_entered)
-    set_faction_data(self.owner.faction)
+    set_physics_cfg(self.owner.physics_cfg)
 
-func set_faction_data(faction: Faction):
-    collision_layer = faction.hitbox_layer
-    collision_mask = faction.hitbox_mask
+func set_physics_cfg(physics_cfg: PhysicsCfg):
+    collision_layer = physics_cfg.hitbox_layer
+    collision_mask = physics_cfg.hitbox_mask
 
 func _on_area_entered(hurtbox: HurtBox):
     if not disabled and not hurtbox.disabled:

@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://xlc8vxjs6uup"]
 
 [ext_resource type="Script" path="res://weapons/shotgun/shotgun.gd" id="1_a5184"]
-[ext_resource type="Resource" uid="uid://dmkim7kassqsv" path="res://weapons/shotgun/faction_player.tres" id="2_lblwe"]
-[ext_resource type="Texture2D" uid="uid://b1v5dh64oal0s" path="res://weapons/shotgun/shotgun.png" id="2_syk2o"]
-[ext_resource type="AudioStream" uid="uid://chbw023eppdiq" path="res://weapons/shotgun/shoot.wav" id="4_or1g5"]
+[ext_resource type="Resource" uid="uid://dmkim7kassqsv" path="res://weapons/shotgun/physics_cfg_player.tres" id="2_lblwe"]
+[ext_resource type="Texture2D" uid="uid://d18h7weh2tlbw" path="res://weapons/shotgun/shotgun.png" id="2_syk2o"]
+[ext_resource type="AudioStream" uid="uid://dhqrgenqqr5k0" path="res://weapons/shotgun/shoot.wav" id="4_or1g5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6juic"]
 radius = 256.0
@@ -12,9 +12,9 @@ radius = 256.0
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_a5184")
-primary_faction = ExtResource("2_lblwe")
-secondary_faction = ExtResource("2_lblwe")
-faction = ExtResource("2_lblwe")
+primary_physics_cfg = ExtResource("2_lblwe")
+secondary_physics_cfg = ExtResource("2_lblwe")
+physics_cfg = ExtResource("2_lblwe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

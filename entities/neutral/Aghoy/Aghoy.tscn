@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://c0cnqs3d0jrf0"]
 
 [ext_resource type="Script" path="res://entities/neutral/Aghoy/Aghoy.gd" id="1_sbwc6"]
-[ext_resource type="Resource" uid="uid://btmdjbd6f1yvw" path="res://entities/neutral/Aghoy/faction.tres" id="2_5hbix"]
+[ext_resource type="Resource" uid="uid://btmdjbd6f1yvw" path="res://entities/neutral/Aghoy/physics_cfg.tres" id="2_dtn4w"]
 [ext_resource type="Script" path="res://components/HealthBar.gd" id="3_mpy66"]
 [ext_resource type="Texture2D" uid="uid://chks4dajgl1uv" path="res://asset_packs/PUNY_MONSTERS_v1/Aghoy.png" id="4_og7xv"]
 [ext_resource type="Script" path="res://components/HitBox.gd" id="5_tgpxi"]
@@ -78,7 +78,7 @@ collision_layer = 129
 collision_mask = 17
 motion_mode = 1
 script = ExtResource("1_sbwc6")
-faction = ExtResource("2_5hbix")
+physics_cfg = ExtResource("2_dtn4w")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true

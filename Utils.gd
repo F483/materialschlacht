@@ -21,9 +21,9 @@ func sort_query_world_entities(
     }
     for entry in input_entities:
         var entity = entry["collider"]
-        if entity.faction.name == "Player":
+        if entity.physics_cfg.name == "Player":
             result["player"].append(entity)
-        elif entity.faction.name == "Enemy":
+        elif entity.physics_cfg.name == "Enemy":
             result["enemy"].append(entity)
         else:
             result["neutral"].append(entity)

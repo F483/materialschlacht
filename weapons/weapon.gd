@@ -10,27 +10,27 @@ signal fired(bullet: Array[Bullet])
 
 var aiming: bool = false
 
-signal faction_updated(value: Faction)
+signal physics_cfg_updated(value: PhysicsCfg)
 
-@export var faction: Faction = null:
+@export var physics_cfg: PhysicsCfg = null:
     set (value):
-        faction = value
-        faction_updated.emit(faction)
+        physics_cfg = value
+        physics_cfg_updated.emit(physics_cfg)
 
 func _ready():
-    self.faction_updated.connect(set_faction_data)
-    set_faction_data(self.faction)
+    self.physics_cfg_updated.connect(set_physics_cfg)
+    set_physics_cfg(self.physics_cfg)
 
-func set_faction_data(faction: Faction):
-    collision_layer = faction.targeting_layer
-    collision_mask = faction.targeting_mask
+func set_physics_cfg(physics_cfg: PhysicsCfg):
+    collision_layer = physics_cfg.targeting_layer
+    collision_mask = physics_cfg.targeting_mask
 
 func trigger():
     if aiming and not safty:
         var bullets = shoot()
         for bullet in bullets:
             bullet.entity_owner = self.owner
-            bullet.faction = bullet.FACTIONS[faction.name]
+            bullet.physics_cfg = bullet.FACTIONS[physics_cfg.name]
             %ShootingPoint.add_child(bullet)
         fired.emit(bullets)
         

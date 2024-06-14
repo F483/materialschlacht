@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw6qjtvj7g6a"]
+[gd_scene load_steps=4 format=3 uid="uid://dw6qjtvj7g6a"]
 
 [ext_resource type="Script" path="res://weapons/rifle/rifle.gd" id="1_6yese"]
-[ext_resource type="Resource" uid="uid://juwws4rfwgk" path="res://weapons/rifle/faction_player.tres" id="2_fy5rm"]
 [ext_resource type="AudioStream" uid="uid://bq47yxx5gcycn" path="res://weapons/rifle/shoot.wav" id="4_hyy87"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6juic"]
@@ -13,7 +12,6 @@ collision_mask = 0
 script = ExtResource("1_6yese")
 accuracy = 0.333
 cycle_time = 0.5
-faction = ExtResource("2_fy5rm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
