@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entities/player/Puny/Puny.gd" id="1_heyg1"]
 [ext_resource type="Resource" uid="uid://cd43v5yma5yd" path="res://entities/player/Puny/physics_cfg.tres" id="2_ecoxi"]
-[ext_resource type="Script" path="res://components/Selection.gd" id="3_1tq0h"]
+[ext_resource type="Script" path="res://components/SelectBox.gd" id="3_1tq0h"]
 [ext_resource type="Texture2D" uid="uid://crnqlbldeou0i" path="res://asset_packs/Puny-Characters/Soldier-Red.png" id="3_h3unn"]
 [ext_resource type="Script" path="res://components/state/StateMachine.gd" id="5_tcrjn"]
 [ext_resource type="Script" path="res://components/state/states/Move.gd" id="6_j23dn"]
@@ -232,9 +232,10 @@ script = ExtResource("10_fir0m")
 [node name="Attack" type="Node2D" parent="StateMachine"]
 script = ExtResource("11_xutug")
 
-[node name="Selection" type="Node2D" parent="."]
+[node name="SelectBox" type="Node2D" parent="." node_paths=PackedStringArray("alt_owner")]
 script = ExtResource("3_1tq0h")
 rect = Rect2(-6, -8, 12, 16)
+alt_owner = NodePath("..")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true

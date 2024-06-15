@@ -1,6 +1,6 @@
 extends Node2D
 
-class_name SelectionBox
+class_name SelectionBox # TODO rename to InputSelectionBox to avoid confusion
 
 signal selected_entities(value: Array[Dictionary])
 signal selected_position(value: Vector2)

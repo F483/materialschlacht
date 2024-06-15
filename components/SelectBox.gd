@@ -2,7 +2,7 @@
 
 extends Node2D
 
-class_name Selection
+class_name SelectBox
 
 @export var selected: bool = true:
     set (value):

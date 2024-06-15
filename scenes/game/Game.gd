@@ -69,7 +69,7 @@ func unselect(entity):
     if selected_entities.has(object_id):
         var selected_entity = selected_entities[object_id]
         assert(selected_entity == entity, "ERROR: object id missmatch!")
-        var selection = entity.get_node("Selection")
+        var selection = entity.get_node("SelectBox")
         selection.set_selected_off()
         return selected_entities.erase(object_id)
     return false
@@ -77,14 +77,14 @@ func unselect(entity):
 func clear_selection():
     for object_id in selected_entities:
         var entity = selected_entities[object_id]
-        var selection = entity.get_node("Selection")
+        var selection = entity.get_node("SelectBox")
         selection.set_selected_off()
     selected_entities.clear()
 
 func _select_player_entities(player_entities):
     self.clear_selection()
     for entity in player_entities:
-        var selection = entity.get_node("Selection")
+        var selection = entity.get_node("SelectBox")
         selection.set_selected_on()
         selected_entities[entity.get_instance_id()] = entity
     
