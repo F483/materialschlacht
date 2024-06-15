@@ -1,6 +1,6 @@
 @tool
 
-extends Node2D
+extends Area2D
 
 class_name SelectBox
 
@@ -9,7 +9,7 @@ class_name SelectBox
         selected = value
         queue_redraw()
 
-@export var rect: Rect2 = Rect2(-32, -48, 64, 96)
+@export var rect: Rect2 = Rect2(-32, -48, 64, 96) # FIXME get from shape instead
 @export var fill_color: Color = Color(1, 1 ,0 , 0.25)
 @export var outline_color: Color = Color(1, 1 ,0 , 1)
 @export var outline_width: int = -1

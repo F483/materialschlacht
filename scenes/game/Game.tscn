@@ -42,7 +42,7 @@ script = ExtResource("3_id2dg")
 unique_name_in_owner = true
 z_index = 666
 script = ExtResource("4_ghd0c")
-collision_mask = 17891601
+collision_mask = 143132808
 
 [node name="NeutralEntities" type="Node2D" parent="."]
 
