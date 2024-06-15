@@ -14,19 +14,23 @@ class_name Selection
 @export var outline_color: Color = Color(1, 1 ,0 , 1)
 @export var outline_width: int = -1
 @export var draw_iso: bool = true
+@export var alt_owner: Node = null
 
 func _ready():
     self.tree_exiting.connect(unselect)
+    alt_owner = self.owner
 
+func unselect():
+    # FIXME Known bug: https://github.com/godotengine/godot/issues/92769
+    # self.owner.game.unselect(self.owner)
+    self.alt_owner.game.unselect(self.alt_owner)
+    
 func set_selected_on():
     selected = true
 
 func set_selected_off():
     selected = false
-
-func unselect():
-    self.owner.game.unselect(self.owner)
-
+    
 func _draw():
     var tile: PackedVector2Array = [
         Vector2(
