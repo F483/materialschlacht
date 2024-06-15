@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cegild4dp6ou7"]
+[gd_scene load_steps=20 format=3 uid="uid://cegild4dp6ou7"]
 
 [ext_resource type="Script" path="res://entities/enemies/Santelmo/Santelmo.gd" id="1_htvjm"]
 [ext_resource type="Resource" uid="uid://dvmqnl7duotek" path="res://entities/enemies/Santelmo/physics_cfg.tres" id="2_uyxvp"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://components/Movement.gd" id="7_2rv2a"]
 [ext_resource type="Script" path="res://components/DirectionSelector.gd" id="8_1u828"]
 [ext_resource type="Script" path="res://components/Spawner.gd" id="9_d4biq"]
+[ext_resource type="Script" path="res://components/SelectBox.gd" id="10_hhl2h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fjug"]
 bg_color = Color(0.152941, 0.168627, 0.188235, 1)
@@ -32,6 +33,10 @@ radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e7q00"]
 radius = 4.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dogoq"]
+radius = 8.0
+height = 16.0
 
 [sub_resource type="Animation" id="Animation_w7d2j"]
 resource_name = "Hold"
@@ -117,6 +122,15 @@ debug_color = Color(0.905882, 0.215686, 0.537255, 0.419608)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_e7q00")
+
+[node name="SelectBox" type="Area2D" parent="."]
+script = ExtResource("10_hhl2h")
+rect = Rect2(-6, -8, 12, 16)
+draw_iso = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectBox"]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_dogoq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true

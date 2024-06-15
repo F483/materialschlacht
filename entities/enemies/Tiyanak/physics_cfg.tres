@@ -13,3 +13,5 @@ hitbox_layer = 512
 hitbox_mask = 68
 hurtbox_layer = 1024
 hurtbox_mask = 34
+selectbox_layer = 2048
+selectbox_mask = 0

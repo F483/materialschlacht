@@ -23,6 +23,10 @@
 radius = 4.0
 height = 14.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s0o6e"]
+radius = 7.0
+height = 20.0
+
 [sub_resource type="Animation" id="Animation_7sree"]
 resource_name = "Bow"
 length = 0.8
@@ -197,10 +201,6 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s0o6e"]
-radius = 7.0
-height = 20.0
-
 [node name="Puny" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_heyg1")
@@ -235,6 +235,15 @@ script = ExtResource("10_fir0m")
 
 [node name="Attack" type="Node2D" parent="StateMachine"]
 script = ExtResource("11_xutug")
+
+[node name="SelectBox" type="Area2D" parent="." node_paths=PackedStringArray("alt_owner")]
+script = ExtResource("3_1tq0h")
+rect = Rect2(-6, -8, 12, 16)
+alt_owner = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectBox"]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_s0o6e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -284,14 +293,3 @@ counterclockwise = true
 unique_name_in_owner = true
 position = Vector2(-1, 3)
 weapon_cfg = ExtResource("18_uvn05")
-
-[node name="SelectBox" type="Area2D" parent="." node_paths=PackedStringArray("alt_owner")]
-collision_layer = 8
-collision_mask = 0
-script = ExtResource("3_1tq0h")
-rect = Rect2(-6, -8, 12, 16)
-alt_owner = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectBox"]
-position = Vector2(0, -2)
-shape = SubResource("CapsuleShape2D_s0o6e")

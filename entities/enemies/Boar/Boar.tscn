@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c6w63m5cnqer3"]
+[gd_scene load_steps=20 format=3 uid="uid://c6w63m5cnqer3"]
 
 [ext_resource type="Script" path="res://entities/enemies/Boar/Boar.gd" id="1_4r1kp"]
 [ext_resource type="Resource" uid="uid://njtb40pi75ka" path="res://entities/enemies/Boar/physics_cfg.tres" id="2_lwi22"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://components/Spawner.gd" id="7_nvr7d"]
 [ext_resource type="Script" path="res://components/Movement.gd" id="8_7esb7"]
 [ext_resource type="Script" path="res://components/DirectionSelector.gd" id="9_x32ew"]
+[ext_resource type="Script" path="res://components/SelectBox.gd" id="10_qcfxj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fjug"]
 bg_color = Color(0.152941, 0.168627, 0.188235, 1)
@@ -23,6 +24,10 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ngfli"]
+radius = 6.0
+height = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_avdf0"]
 radius = 6.0
@@ -93,6 +98,14 @@ max_value = 30.0
 value = 30.0
 show_percentage = false
 script = ExtResource("3_44grd")
+
+[node name="SelectBox" type="Area2D" parent="."]
+script = ExtResource("10_qcfxj")
+rect = Rect2(-6, -8, 12, 16)
+draw_iso = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectBox"]
+shape = SubResource("CapsuleShape2D_ngfli")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true

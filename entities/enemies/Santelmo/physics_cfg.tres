@@ -13,3 +13,5 @@ hitbox_layer = 33554432
 hitbox_mask = 4456516
 hurtbox_layer = 67108864
 hurtbox_mask = 2228224
+selectbox_layer = 134217728
+selectbox_mask = 0

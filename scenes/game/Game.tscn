@@ -44,25 +44,6 @@ z_index = 666
 script = ExtResource("4_ghd0c")
 collision_mask = 143132808
 
-[node name="NeutralEntities" type="Node2D" parent="."]
-
-[node name="Aghoy" parent="NeutralEntities" instance=ExtResource("6_e66sy")]
-position = Vector2(271, 1587)
-
-[node name="PlayerEntities" type="Node2D" parent="."]
-unique_name_in_owner = true
-y_sort_enabled = true
-script = ExtResource("6_caxu3")
-
-[node name="Puny" parent="PlayerEntities" instance=ExtResource("7_vmpsy")]
-position = Vector2(187, 1765)
-
-[node name="Puny2" parent="PlayerEntities" instance=ExtResource("7_vmpsy")]
-position = Vector2(286, 1839)
-
-[node name="Puny3" parent="PlayerEntities" instance=ExtResource("7_vmpsy")]
-position = Vector2(281, 1749)
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
@@ -134,19 +115,125 @@ unique_name_in_owner = true
 stream = ExtResource("8_j8io2")
 volume_db = -12.0
 
+[node name="NeutralEntities" type="Node2D" parent="."]
+
+[node name="Aghoy" parent="NeutralEntities" instance=ExtResource("6_e66sy")]
+position = Vector2(184, 726)
+
+[node name="Aghoy2" parent="NeutralEntities" instance=ExtResource("6_e66sy")]
+position = Vector2(290, 254)
+
+[node name="PlayerEntities" type="Node2D" parent="."]
+unique_name_in_owner = true
+y_sort_enabled = true
+script = ExtResource("6_caxu3")
+
+[node name="Puny" parent="PlayerEntities" instance=ExtResource("7_vmpsy")]
+position = Vector2(158, 1904)
+
+[node name="Puny2" parent="PlayerEntities" instance=ExtResource("7_vmpsy")]
+position = Vector2(264, 1796)
+
+[node name="Puny3" parent="PlayerEntities" instance=ExtResource("7_vmpsy")]
+position = Vector2(340, 1875)
+
+[node name="Puny4" parent="PlayerEntities" instance=ExtResource("7_vmpsy")]
+position = Vector2(155, 1824)
+
 [node name="EnemyEntities" type="Node2D" parent="."]
 unique_name_in_owner = true
 
 [node name="Boar" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
-position = Vector2(191, 1250)
+position = Vector2(100, 1398)
+
+[node name="Boar2" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
+position = Vector2(364, 1188)
+
+[node name="Boar3" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
+position = Vector2(142, 1180)
+
+[node name="Boar4" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
+position = Vector2(260, 1294)
+
+[node name="Boar5" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
+position = Vector2(358, 1374)
+
+[node name="Boar6" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
+position = Vector2(118, 852)
+
+[node name="Boar7" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
+position = Vector2(348, 876)
+
+[node name="Boar8" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
+position = Vector2(254, 708)
+
+[node name="Boar9" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
+position = Vector2(142, 606)
+
+[node name="Boar10" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
+position = Vector2(372, 650)
+
+[node name="Boar11" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
+position = Vector2(140, 368)
+
+[node name="Boar12" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
+position = Vector2(294, 362)
+
+[node name="Boar13" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
+position = Vector2(224, 206)
+
+[node name="Boar14" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
+position = Vector2(412, 124)
+
+[node name="Boar15" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
+position = Vector2(368, 264)
+
+[node name="Boar16" parent="EnemyEntities" instance=ExtResource("5_1hrv2")]
+position = Vector2(128, 106)
 
 [node name="Santelmo" parent="EnemyEntities" instance=ExtResource("6_1enpl")]
-position = Vector2(154, 1648)
+position = Vector2(234, 888)
+
+[node name="Santelmo2" parent="EnemyEntities" instance=ExtResource("6_1enpl")]
+position = Vector2(132, 724)
+
+[node name="Santelmo3" parent="EnemyEntities" instance=ExtResource("6_1enpl")]
+position = Vector2(390, 782)
+
+[node name="Santelmo4" parent="EnemyEntities" instance=ExtResource("6_1enpl")]
+position = Vector2(256, 600)
+
+[node name="Santelmo5" parent="EnemyEntities" instance=ExtResource("6_1enpl")]
+position = Vector2(244, 788)
+
+[node name="Santelmo6" parent="EnemyEntities" instance=ExtResource("6_1enpl")]
+position = Vector2(194, 410)
+
+[node name="Santelmo7" parent="EnemyEntities" instance=ExtResource("6_1enpl")]
+position = Vector2(418, 396)
+
+[node name="Santelmo8" parent="EnemyEntities" instance=ExtResource("6_1enpl")]
+position = Vector2(90, 246)
+
+[node name="Santelmo9" parent="EnemyEntities" instance=ExtResource("6_1enpl")]
+position = Vector2(328, 166)
+
+[node name="Santelmo10" parent="EnemyEntities" instance=ExtResource("6_1enpl")]
+position = Vector2(230, 94)
 
 [node name="Tiyanak" parent="EnemyEntities" instance=ExtResource("11_he1ya")]
-position = Vector2(171, 1427)
+position = Vector2(84, 434)
 
 [node name="Tiyanak2" parent="EnemyEntities" instance=ExtResource("11_he1ya")]
-position = Vector2(300, 1430)
+position = Vector2(302, 400)
+
+[node name="Tiyanak3" parent="EnemyEntities" instance=ExtResource("11_he1ya")]
+position = Vector2(198, 290)
+
+[node name="Tiyanak4" parent="EnemyEntities" instance=ExtResource("11_he1ya")]
+position = Vector2(132, 148)
+
+[node name="Tiyanak5" parent="EnemyEntities" instance=ExtResource("11_he1ya")]
+position = Vector2(356, 70)
 
 [connection signal="timeout" from="Timer" to="." method="spawn_enemy"]

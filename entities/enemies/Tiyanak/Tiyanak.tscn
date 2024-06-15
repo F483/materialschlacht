@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dres4qlld7l7n"]
+[gd_scene load_steps=23 format=3 uid="uid://dres4qlld7l7n"]
 
 [ext_resource type="Script" path="res://entities/enemies/Tiyanak/Tiyanak.gd" id="1_xa2pa"]
 [ext_resource type="Resource" uid="uid://bbwxnwpigy2g8" path="res://entities/enemies/Tiyanak/physics_cfg.tres" id="2_hh063"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://components/state/states/Defend.gd" id="11_hfrut"]
 [ext_resource type="PackedScene" uid="uid://dw6qjtvj7g6a" path="res://weapons/rifle/rifle.tscn" id="12_jwah5"]
 [ext_resource type="Resource" uid="uid://c1qpjy740u635" path="res://entities/enemies/Tiyanak/weapon_cfg.tres" id="13_p0vqo"]
+[ext_resource type="Script" path="res://components/SelectBox.gd" id="14_8fqi3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5fjug"]
 bg_color = Color(0.152941, 0.168627, 0.188235, 1)
@@ -27,6 +28,10 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5srak"]
+radius = 6.0
+height = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1cqyx"]
 radius = 6.0
@@ -94,6 +99,14 @@ max_value = 30.0
 value = 30.0
 show_percentage = false
 script = ExtResource("3_gscxp")
+
+[node name="SelectBox" type="Area2D" parent="."]
+script = ExtResource("14_8fqi3")
+rect = Rect2(-6, -8, 12, 16)
+draw_iso = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SelectBox"]
+shape = SubResource("CapsuleShape2D_5srak")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true

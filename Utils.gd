@@ -4,6 +4,14 @@ const MASK_MAP_LEDGES = 8192
 const MASK_MAP_WALLS = 16384
 const MASK_MAP_SMOKE = 268435456
 
+func get_area_owners(nodes: Array[Area2D]) -> Array[Node2D]:
+    var result: Array[Node2D] = []
+    for node in nodes:
+        var area_owner = node.owner
+        assert(area_owner is Entity, "Error: Expect area owner to be Entity!")
+        result.append(area_owner)
+    return result
+    
 func get_2dchildren(node: Node) -> Array[Node2D]:
     var result: Array[Node2D] = []
     for child in node.get_children():

@@ -39,13 +39,11 @@ func trigger():
         if shootSfx:
             shootSfx.play()
         
-
 func find_targetable_enemies() -> Array[Node2D]:
+    var areas: Array[Area2D] = get_overlapping_areas()
+    var targets: Array[Node2D] = Utils.get_area_owners(areas)
     return Utils.filter_obscured(
-        self,
-        get_overlapping_bodies(),
-        Config.m_highground,
-        Config.m_concealment
+        self, targets, Config.m_highground, Config.m_concealment
     )
     
 func aim_at(target):

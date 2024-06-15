@@ -13,3 +13,5 @@ hitbox_layer = 0
 hitbox_mask = 0
 hurtbox_layer = 4
 hurtbox_mask = 544
+selectbox_layer = 8
+selectbox_mask = 0

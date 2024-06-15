@@ -17,8 +17,15 @@ class_name SelectBox
 @export var alt_owner: Node = null
 
 func _ready():
-    self.tree_exiting.connect(unselect)
-    alt_owner = self.owner
+    if not Engine.is_editor_hint():
+        alt_owner = self.owner
+        self.owner.physics_cfg_updated.connect(set_physics_cfg)
+        self.tree_exiting.connect(unselect)
+        set_physics_cfg(self.owner.physics_cfg)
+
+func set_physics_cfg(physics_cfg: PhysicsCfg):
+    collision_layer = physics_cfg.selectbox_layer
+    collision_mask = physics_cfg.selectbox_mask
 
 func unselect():
     # FIXME Known bug: https://github.com/godotengine/godot/issues/92769
