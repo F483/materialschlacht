@@ -27,8 +27,8 @@ var selected_entities: Dictionary = {}
 func _ready():
     self._select_player_entities(%PlayerEntities.get_children())
     %MusicPlayer.play()
-    %SelectionBox.selected_entities.connect(self._on_selected_entities)
-    %SelectionBox.selected_position.connect(self._on_selected_position)
+    %InputSelectionBox.selected_entities.connect(self._on_selected_entities)
+    %InputSelectionBox.selected_position.connect(self._on_selected_position)
     # FIXME set camera limits based on map size
     
 func spawn_enemy(spawn_position: Vector2 = Vector2.ZERO):
@@ -114,7 +114,7 @@ func _input(event):
                 var entity = selected_entities[object_id]
                 var move_state = entity.get_node("StateMachine").get_node("Move")
                 move_state.block_transition = false
-            %SelectionBox.disabled = false
+            %InputSelectionBox.disabled = false
             input_mode = INPUT_MODE.BOX_SELECT
             return
 
@@ -139,7 +139,7 @@ func _input(event):
         ):
             var global_rect = Rect2(get_global_mouse_position(), Vector2(1, 1))
             var selected = Utils.query_world_rect(
-                get_world_2d(), global_rect, %SelectionBox.collision_mask
+                get_world_2d(), global_rect, %InputSelectionBox.collision_mask
             )
             if selected:
                 var entities = Utils.sort_query_world_entities(selected)
@@ -150,7 +150,7 @@ func _input(event):
                         "target": get_global_mouse_position(),
                         "block_transition": true
                     })
-                    %SelectionBox.disabled = true
+                    %InputSelectionBox.disabled = true
                     input_mode = INPUT_MODE.DRAG_SELECT
                     return
                     
@@ -161,7 +161,7 @@ func _input(event):
                     return
         
         if (input_mode == INPUT_MODE.DRAG_SELECT):
-            %SelectionBox.disabled = false
+            %InputSelectionBox.disabled = false
             input_mode = INPUT_MODE.BOX_SELECT
             self._change_state("Default", {})
             return

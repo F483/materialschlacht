@@ -22,3 +22,4 @@ func _on_area_entered(hurtbox: HurtBox):
     if not disabled and not hurtbox.disabled:
         hurtbox.damaged.emit(self)
         self.damaged.emit(hurtbox)
+

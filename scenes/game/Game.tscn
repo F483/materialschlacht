@@ -1,9 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cruh7nl4gnr56"]
+[gd_scene load_steps=13 format=3 uid="uid://cruh7nl4gnr56"]
 
 [ext_resource type="Script" path="res://scenes/game/Game.gd" id="1_h1b5a"]
 [ext_resource type="PackedScene" uid="uid://2ak1wb4r1f7g" path="res://maps/TestKenny1Bit.tscn" id="2_34m4d"]
 [ext_resource type="Script" path="res://scenes/game/camera.gd" id="3_id2dg"]
-[ext_resource type="Script" path="res://scenes/game/SelectionBox.gd" id="4_ghd0c"]
+[ext_resource type="Script" path="res://scenes/game/InputSelectionBox.gd" id="4_ghd0c"]
 [ext_resource type="PackedScene" uid="uid://c6w63m5cnqer3" path="res://entities/enemies/Boar/Boar.tscn" id="5_1hrv2"]
 [ext_resource type="PackedScene" uid="uid://cegild4dp6ou7" path="res://entities/enemies/Santelmo/Santelmo.tscn" id="6_1enpl"]
 [ext_resource type="Script" path="res://scenes/game/PlayerEntities.gd" id="6_caxu3"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://bg5l5dskd8qgu" path="res://entities/player/Puny/Puny.tscn" id="7_vmpsy"]
 [ext_resource type="AudioStream" uid="uid://c6u4yobc614t3" path="res://music/Studio Picalquers - Demo - Sunk.mp3" id="8_j8io2"]
 [ext_resource type="PackedScene" uid="uid://dres4qlld7l7n" path="res://entities/enemies/Tiyanak/Tiyanak.tscn" id="11_he1ya"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hnyvu"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -38,11 +40,14 @@ limit_right = 512
 limit_bottom = 2048
 script = ExtResource("3_id2dg")
 
-[node name="SelectionBox" type="Node2D" parent="Camera2D"]
+[node name="InputSelectionBox" type="Area2D" parent="Camera2D"]
 unique_name_in_owner = true
-z_index = 666
+collision_layer = 0
+collision_mask = 143165576
 script = ExtResource("4_ghd0c")
-collision_mask = 143132808
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/InputSelectionBox"]
+shape = SubResource("RectangleShape2D_hnyvu")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0

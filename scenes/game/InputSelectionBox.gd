@@ -1,11 +1,10 @@
-extends Node2D
+extends Area2D
 
-class_name SelectionBox # TODO rename to InputSelectionBox to avoid confusion
+class_name InputSelectionBox # TODO rename to InputSelectionBox to avoid confusion
 
 signal selected_entities(value: Array[Dictionary])
 signal selected_position(value: Vector2)
 
-@export_flags_2d_physics var collision_mask: int = 0
 @export var box_fill_color: Color = Color(1, 1 ,0 , 0.1)
 @export var box_outline_color: Color = Color(1, 1 ,0 , 0.5)
 @export var box_outline_width: int = 1
@@ -80,12 +79,24 @@ func _get_selecton_rect(global: bool) -> Rect2:
 func _do_selection():
     if disabled:
         return
-    var global_rect = _get_selecton_rect(true)
-    var selected = Utils.query_world_rect(
-        get_world_2d(), global_rect, collision_mask
-    )
+    var global_rect: Rect2 = _get_selecton_rect(true)
+    
+    var center_point = global_rect.position + global_rect.size / 2
+    self.position = center_point
+    self.get_node("CollisionShape2D").shape.size = global_rect.size
+    
+    var areas: Array[Area2D] = get_overlapping_areas()
+    var selected = Utils.sort_area_entities(areas)
     if selected:
-        selected_entities.emit(Utils.sort_query_world_entities(selected))
+        selected_entities.emit(selected)
     else:
-        var point = global_rect.position + global_rect.size / 2
-        selected_position.emit(point)
+        selected_position.emit(center_point)
+    
+    #var selected = Utils.query_world_rect(
+    #    get_world_2d(), global_rect, collision_mask
+    #)
+    #if selected:
+    #    selected_entities.emit(Utils.sort_query_world_entities(selected))
+    #else:
+    #    var point = global_rect.position + global_rect.size / 2
+    #    selected_position.emit(point)

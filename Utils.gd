@@ -1,8 +1,9 @@
 extends Node
 
+const MASK_MAP_WALLS = 4096
 const MASK_MAP_LEDGES = 8192
-const MASK_MAP_WALLS = 16384
-const MASK_MAP_SMOKE = 268435456
+const MASK_MAP_SMOKE = 16384
+const MASK_MAP_WATER = 32768
 
 func get_area_owners(nodes: Array[Area2D]) -> Array[Node2D]:
     var result: Array[Node2D] = []
@@ -11,7 +12,26 @@ func get_area_owners(nodes: Array[Area2D]) -> Array[Node2D]:
         assert(area_owner is Entity, "Error: Expect area owner to be Entity!")
         result.append(area_owner)
     return result
-    
+
+func sort_area_entities(
+  nodes: Array[Area2D]
+) -> Dictionary:
+    var result = {
+        "player": [] as Array[Node2D],
+        "enemy": [] as Array[Node2D],
+        "neutral": [] as Array[Node2D],
+    }
+    for entry in nodes:
+        var entity = entry.owner
+        assert(entity is Entity, "Error: Expect area owner to be Entity!")
+        if entity.physics_cfg.name == "Player":
+            result["player"].append(entity)
+        elif entity.physics_cfg.name == "Enemy":
+            result["enemy"].append(entity)
+        else:
+            result["neutral"].append(entity)
+    return result
+
 func get_2dchildren(node: Node) -> Array[Node2D]:
     var result: Array[Node2D] = []
     for child in node.get_children():
